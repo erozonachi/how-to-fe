@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, Header, Button, Checkbox, Form } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export default function AuthFormBuilder(props) {
   return(
@@ -35,4 +36,8 @@ export default function AuthFormBuilder(props) {
       </Link>
     </Container>
   );
+}
+
+AuthFormBuilder.propType = {
+  signUp: PropTypes.bool
 }
