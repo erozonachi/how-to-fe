@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container, Header, Button, Checkbox, Form } from 'semantic-ui-react'
+import { Link } from 'react-router-dom';
 
 export default function AuthFormBuilder(props) {
   return(
@@ -29,6 +30,9 @@ export default function AuthFormBuilder(props) {
         }
         <Button type='submit'>{(props.signUp && 'Sign Up') || 'Login'}</Button>
       </Form>
+      <Link to={(props.signUp && '/signup') || '/login'}>
+        {(props.signUp && 'Already have an account?') || `Don't have an account?`}
+      </Link>
     </Container>
   );
 }
