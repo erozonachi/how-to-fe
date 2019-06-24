@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Header, Checkbox, Form, Icon } from 'semantic-ui-react';
+import { Button, Header, Checkbox, Form, Icon, Message } from 'semantic-ui-react';
 import { FormContainer } from './FormContainer';
 import { Link } from 'react-router-dom';
 import login from './assets/login.svg';
@@ -13,12 +13,25 @@ export default function AuthFormBuilder(props) {
     confirm: '',
     isCreator: false,
   };
+  const errorDefaults = {
+    title: null,
+    message: null,
+  };
   const [formInputs, setFormInputs] = useState(initialState);
+  const [formError, setFormError] = useState(errorDefaults);
   
   const handleInputChange = (event) => {
     const target = event.target;
+    setFormError({...errorDefaults});
 
     if(target.placeholder.includes('Username')) {
+      if(target.value.match(/\s/g)) {
+        setFormError( (prevError) => ({
+          ...prevError,
+          title: 'Malformed Username',
+          message: 'Username must not contain whitespaces',
+        }));
+      }
       setFormInputs(prevState => ({...prevState, username: target.value}));
     }
     else if(target.placeholder.includes('Enter Password')) {
@@ -30,7 +43,6 @@ export default function AuthFormBuilder(props) {
   }
   const handleCheckClick = () => {
     setFormInputs(prevState => {console.log(formInputs); return ({...prevState, isCreator: !prevState.isCreator})});
-    console.log(formInputs)
   }
 
   return(
@@ -41,7 +53,12 @@ export default function AuthFormBuilder(props) {
       />
       <div>
         <Header as='h2'>{(props.signUp && 'User Registration') || 'User Login'}</Header>
-        <Form>
+        <Form error>
+          {formError.title && <Message
+            error
+            header={formError.title}
+            content={formError.message}
+          />}
           <Form.Field>
             <label>Username</label>
             <input placeholder='Enter Username' value={formInputs.username} onChange={handleInputChange} />
