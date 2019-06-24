@@ -45,6 +45,32 @@ export default function AuthFormBuilder(props) {
     setFormInputs(prevState => {console.log(formInputs); return ({...prevState, isCreator: !prevState.isCreator})});
   }
 
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+
+    if(formInputs.username.trim() === '' || formInputs.password.trim() === '' || (props.signUp && formInputs.confirm.trim() === '')) {
+      setFormError( (prevError) => ({
+        ...prevError,
+        title: 'All Fields Required',
+        message: 'Please fill in blank input fields',
+      }));
+    } else if(formInputs.username.match(/\s/g)) {
+      setFormError( (prevError) => ({
+        ...prevError,
+        title: 'Malformed Username',
+        message: 'Username must not contain whitespaces',
+      }));
+    } else if(formInputs.password !== formInputs.confirm) {
+      setFormError( (prevError) => ({
+        ...prevError,
+        title: 'Password Mismatch',
+        message: 'Confirm password does not match password',
+      }));
+    } else {
+      //handle success
+    }
+  }
+
   return(
     <FormContainer>
       <img 
@@ -53,7 +79,7 @@ export default function AuthFormBuilder(props) {
       />
       <div>
         <Header as='h2'>{(props.signUp && 'User Registration') || 'User Login'}</Header>
-        <Form error>
+        <Form onSubmit={handleFormSubmit} error>
           {formError.title && <Message
             error
             header={formError.title}
