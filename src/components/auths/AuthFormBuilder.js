@@ -1,9 +1,10 @@
 import React from 'react'
-import { Container, Button, Checkbox, Form } from 'semantic-ui-react'
+import { Container, Header, Button, Checkbox, Form } from 'semantic-ui-react'
 
 export default function AuthFormBuilder(props) {
   return(
     <Container>
+      <Header as='h2'>{(props.signUp && 'User Registration') || 'User Login'}</Header>
       <Form>
         <Form.Field>
           <label>Username</label>
