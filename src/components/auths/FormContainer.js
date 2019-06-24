@@ -6,7 +6,7 @@ export const FormContainer = styled.div`
   align-items: center;
   max-width: 800px;
   width: 95%;
-  margin: 0 auto;
+  margin: 5em auto;
   box-shadow: 4px 3px 4px 3px #ddd;
   @media (max-width: 750) {
     max-width: 600px;
