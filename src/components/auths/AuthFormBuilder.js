@@ -15,6 +15,20 @@ export default function AuthFormBuilder(props) {
   };
   const [formInputs, setFormInputs] = useState(initialState);
   
+  const handleInputChange = (event) => {
+    const target = event.target;
+
+    if(target.placeholder.includes('Username')) {
+      setFormInputs(prevState => ({...prevState, username: target.value}));
+    }
+    else if(target.placeholder.includes('Enter Password')) {
+      setFormInputs(prevState => ({...prevState, password: target.value}));
+    }
+    else if(target.placeholder.includes('Confirm')) {
+      setFormInputs(prevState => ({...prevState, confirm: target.value}));
+    }
+  }
+
   return(
     <FormContainer>
       <img 
@@ -26,23 +40,23 @@ export default function AuthFormBuilder(props) {
         <Form>
           <Form.Field>
             <label>Username</label>
-            <input placeholder='Enter Username' />
+            <input placeholder='Enter Username' value={formInputs.username} onChange={handleInputChange} />
           </Form.Field>
           <Form.Field>
             <label>Password</label>
-            <input placeholder='Enter Password' type='password' />
+            <input placeholder='Enter Password' type='password' value={formInputs.password} onChange={handleInputChange} />
           </Form.Field>
           {
             props.signUp &&
               <Form.Field>
                 <label>Confirm Password</label>
-                <input placeholder='Confirm Password' type='password' />
+                <input placeholder='Confirm Password' type='password' value={formInputs.confirm} onChange={handleInputChange} />
               </Form.Field>
           }
           {
             props.signUp &&
             <Form.Field>
-              <Checkbox label='Sign me up as a creator' />
+              <Checkbox label='Sign me up as a creator' checked={formInputs.isCreator} />
             </Form.Field>
           }
           <Button primary type='submit' animated='fade'>
