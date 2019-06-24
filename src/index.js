@@ -5,13 +5,14 @@ import 'semantic-ui-css/semantic.min.css';
 import { combinedReducers } from './reducers';
 import { createStore, applyMiddleware } from 'redux';
 import { thunk } from 'redux-thunk';
+import { logger } from 'redux-logger';
 import { Provider } from 'react-redux';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 const store = createStore(
   combinedReducers,
-  applyMiddleware(thunk)
+  applyMiddleware(thunk, logger)
 );
 
 ReactDOM.render(<App />, document.getElementById('root'));
