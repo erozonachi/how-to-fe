@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Header, Button, Checkbox, Form } from 'semantic-ui-react';
+import { Button, Header, Checkbox, Form } from 'semantic-ui-react';
 import { FormContainer } from './FormContainer';
 import { Link } from 'react-router-dom';
 import login from './assets/login.svg';
@@ -13,7 +13,7 @@ export default function AuthFormBuilder(props) {
         alt={(props.signUp && 'Sign up banner') || 'Login banner'} 
         src={(props.signUp && signup) || login}
       />
-      <Container>
+      <div>
         <Header as='h2'>{(props.signUp && 'User Registration') || 'User Login'}</Header>
         <Form>
           <Form.Field>
@@ -22,13 +22,13 @@ export default function AuthFormBuilder(props) {
           </Form.Field>
           <Form.Field>
             <label>Password</label>
-            <input placeholder='Enter Password' />
+            <input placeholder='Enter Password' type='password' />
           </Form.Field>
           {
             props.signUp &&
               <Form.Field>
                 <label>Confirm Password</label>
-                <input placeholder='Confirm Password' />
+                <input placeholder='Confirm Password' type='password' />
               </Form.Field>
           }
           {
@@ -37,12 +37,12 @@ export default function AuthFormBuilder(props) {
               <Checkbox label='Sign me up as a creator' />
             </Form.Field>
           }
-          <Button type='submit'>{(props.signUp && 'Sign Up') || 'Login'}</Button>
+          <Button primary type='submit'>{(props.signUp && 'Sign Up') || 'Login'}</Button>
         </Form>
         <Link to={(props.signUp && '/signup') || '/login'}>
           {(props.signUp && 'Already have an account?') || `Don't have an account?`}
         </Link>
-      </Container>
+      </div>
     </FormContainer>
   );
 }
