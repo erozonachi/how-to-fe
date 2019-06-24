@@ -28,6 +28,10 @@ export default function AuthFormBuilder(props) {
       setFormInputs(prevState => ({...prevState, confirm: target.value}));
     }
   }
+  const handleCheckClick = () => {
+    setFormInputs(prevState => {console.log(formInputs); return ({...prevState, isCreator: !prevState.isCreator})});
+    console.log(formInputs)
+  }
 
   return(
     <FormContainer>
@@ -56,7 +60,7 @@ export default function AuthFormBuilder(props) {
           {
             props.signUp &&
             <Form.Field>
-              <Checkbox label='Sign me up as a creator' checked={formInputs.isCreator} />
+              <Checkbox label='Sign me up as a creator' checked={formInputs.isCreator} onClick={handleCheckClick} />
             </Form.Field>
           }
           <Button primary type='submit' animated='fade'>
