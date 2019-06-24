@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Header, Checkbox, Form } from 'semantic-ui-react';
+import { Button, Header, Checkbox, Form, Icon } from 'semantic-ui-react';
 import { FormContainer } from './FormContainer';
 import { Link } from 'react-router-dom';
 import login from './assets/login.svg';
@@ -37,9 +37,16 @@ export default function AuthFormBuilder(props) {
               <Checkbox label='Sign me up as a creator' />
             </Form.Field>
           }
-          <Button primary type='submit'>{(props.signUp && 'Sign Up') || 'Login'}</Button>
+          <Button primary type='submit' animated='fade'>
+            <Button.Content visible>
+              {(props.signUp && 'Sign Up') || 'Login'}
+            </Button.Content>
+            <Button.Content hidden>
+              {(props.signUp && <Icon name='user plus' />) || <Icon name='sign in' />}
+            </Button.Content>
+          </Button>
         </Form>
-        <Link to={(props.signUp && '/signup') || '/login'}>
+        <Link to={(props.signUp && '/login') || '/signup'}>
           {(props.signUp && 'Already have an account?') || `Don't have an account?`}
         </Link>
       </div>
