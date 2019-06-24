@@ -3,12 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import 'semantic-ui-css/semantic.min.css';
 import { combinedReducers } from './reducers';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import { thunk } from 'redux-thunk';
 import { Provider } from 'react-redux';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-const store = createStore(combinedReducers);
+const store = createStore(
+  combinedReducers,
+  applyMiddleware(thunk)
+);
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
