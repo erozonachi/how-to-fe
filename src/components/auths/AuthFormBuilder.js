@@ -78,7 +78,7 @@ export default function AuthFormBuilder(props) {
         src={(props.signUp && signup) || login}
       />
       <div>
-        <Header as='h2'>{(props.signUp && 'User Registration') || 'User Login'}</Header>
+        <Header color='blue' as='h2'>{(props.signUp && 'User Registration') || 'User Login'}</Header>
         <Form onSubmit={handleFormSubmit} error>
           {formError.title && <Message
             error
