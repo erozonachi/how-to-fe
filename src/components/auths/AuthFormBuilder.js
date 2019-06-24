@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Header, Checkbox, Form, Icon } from 'semantic-ui-react';
 import { FormContainer } from './FormContainer';
 import { Link } from 'react-router-dom';
@@ -7,6 +7,14 @@ import signup from './assets/signup.svg';
 import PropTypes from 'prop-types';
 
 export default function AuthFormBuilder(props) {
+  const initialState = {
+    username: '',
+    password: '',
+    confirm: '',
+    isCreator: false,
+  };
+  const [formInputs, setFormInputs] = useState(initialState);
+  
   return(
     <FormContainer>
       <img 
