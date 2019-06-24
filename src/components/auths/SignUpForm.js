@@ -1,6 +1,7 @@
+import React from 'react';
 import AuthFormBuilder from './AuthFormBuilder';
 
-export default function SignUpForm() {
+export function SignUpForm() {
   return(
     <AuthFormBuilder signUp={true} />
   );
