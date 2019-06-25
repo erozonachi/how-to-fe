@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom';
 import login from './assets/login.svg';
 import signup from './assets/signup.svg';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-export default function AuthFormBuilder(props) {
+function AuthFormBuilder(props) {
   const initialState = {
     username: '',
     password: '',
@@ -126,3 +127,5 @@ export default function AuthFormBuilder(props) {
 AuthFormBuilder.propType = {
   signUp: PropTypes.bool
 }
+
+export default connect(() => ({}), {})(AuthFormBuilder);
