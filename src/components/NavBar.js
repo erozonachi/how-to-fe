@@ -8,6 +8,7 @@ function NavBar(props) {
 
   const handleItemClick = (event, { name }) => setActiveItem(name);
   const handleToggle = () => props.handleToggle();
+  const openGuideForm = () => props.openGuideForm();
   
  return(
   <Menu color='blue' inverted attached='top'>
@@ -61,7 +62,7 @@ function NavBar(props) {
           minWidth={Responsive.onlyTablet.minWidth}
           name='AddGuide'
           active={activeItem === 'AddGuide'}
-          onClick={handleItemClick}
+          onClick={openGuideForm}
         >
           <Icon name='add' />
         </Responsive>
