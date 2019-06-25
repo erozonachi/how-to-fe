@@ -11,3 +11,5 @@ export const DELETING_GUIDE = 'DELETING_GUIDE';
 export const READING_GUIDE = 'READING_GUIDE';
 export const LIKING_GUIDE = 'LIKING_GUIDE';
 export const TRYING_GUIDE = 'TRYING_GUIDE';
+
+export { registerUser } from './Auths';
