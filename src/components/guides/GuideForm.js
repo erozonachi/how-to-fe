@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Header, Icon, Modal, Form, Button, Divider, Transition, List, } from 'semantic-ui-react';
 
 export function GuideForm() {
+  const initialState = {
+    title: '',
+    type: '',
+    description: '',
+    link: '',
+    steps: [],
+  }
+  const [guide, setGuide] = useState(initialState);
+
   return(
     <Modal closeIcon>
       <Header icon='add circle' content='Create How-to Guide' />
@@ -17,20 +26,20 @@ export function GuideForm() {
           </Form.Field>
           <Form.Field>
             <label>Description</label>
-            <textarea name='Description' placeholder='Enter Description' />
+            <textarea name='description' placeholder='Enter Description' />
           </Form.Field>
           <Form.Field>
             <label>Steps</label>
             <Transition.Group as={List} animation='slide left' duration={500} divided size='huge'     verticalAlign='middle'>
-              {/* {items.map(item => (
-                <List.Item key={item}>
+              {guide.steps.map((item, index) => (
+                <List.Item key={index}>
                   <List.Content floated='right'>
                     <Icon name='remove' />
                     <Icon name='edit' />
                   </List.Content>
-                  <List.Content>Go Parry!..</List.Content>
+                  <List.Content>{item}</List.Content>
                 </List.Item>
-              ))} */}
+              ))}
             </Transition.Group>
             <textarea name='step' placeholder='Enter a Step' />
             <Button type='button'><Icon name='add square' /></Button>
