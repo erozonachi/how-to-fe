@@ -12,4 +12,4 @@ export const READING_GUIDE = 'READING_GUIDE';
 export const LIKING_GUIDE = 'LIKING_GUIDE';
 export const TRYING_GUIDE = 'TRYING_GUIDE';
 
-export { registerUser } from './Auths';
+export { registerUser, loginUser } from './Auths';
