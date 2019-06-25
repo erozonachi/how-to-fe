@@ -15,7 +15,7 @@ export const registerUser = (user, history) => (dispatch) => {
   .catch(err => {
     dispatch({
       type: types.LOGIN_FAILURE,
-      payload: {error: err.message},
+      payload: {error: err.response.data.message || err.message},
     });
   });
 }
@@ -34,7 +34,7 @@ export const loginUser = (user, history) => (dispatch) => {
   .catch(err => {
     dispatch({
       type: types.LOGIN_FAILURE,
-      payload: {error: err.message},
+      payload: {error: err.response.data.message || err.message},
     });
   });
 }
