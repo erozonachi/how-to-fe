@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Header, Icon, Modal, Form, Button, Divider, Transition, List, } from 'semantic-ui-react';
+import { connect } from 'react-redux';
 
-export function GuideForm() {
+function GuideForm() {
   const initialState = {
     title: '',
     type: '',
@@ -72,3 +73,5 @@ export function GuideForm() {
     </Modal>
   );
 }
+
+export default connect(() => ({}), {})(GuideForm);
