@@ -7,6 +7,7 @@ import signup from './assets/signup.svg';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { mapStateToProps } from '../mapState';
+import { registerUser, loginUser } from '../../actions';
 
 function AuthFormBuilder(props) {
   const initialState = {
@@ -129,4 +130,4 @@ AuthFormBuilder.propType = {
   signUp: PropTypes.bool
 }
 
-export default connect(mapStateToProps, {})(AuthFormBuilder);
+export default connect(mapStateToProps, {registerUser, loginUser})(AuthFormBuilder);
