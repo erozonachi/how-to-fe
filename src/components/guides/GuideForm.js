@@ -11,6 +11,8 @@ export function GuideForm() {
   }
   const [guide, setGuide] = useState(initialState);
 
+  const handleChange = (event, { name, value }) => setGuide(prevGuide => ({...prevGuide, [name]: value}));
+
   return(
     <Modal closeIcon>
       <Header icon='add circle' content='Create How-to Guide' />
@@ -18,15 +20,15 @@ export function GuideForm() {
         <Form>
           <Form.Field>
             <label>Title</label>
-            <input name='title' placeholder='Enter Title' />
+            <input onClick={handleChange} name='title' placeholder='Enter Title' />
           </Form.Field>
           <Form.Field>
             <label>Type</label>
-            <input name='type' placeholder='Enter Type' />
+            <input onClick={handleChange} name='type' placeholder='Enter Type' />
           </Form.Field>
           <Form.Field>
             <label>Description</label>
-            <textarea name='description' placeholder='Enter Description' />
+            <textarea onClick={handleChange} name='description' placeholder='Enter Description' />
           </Form.Field>
           <Form.Field>
             <label>Steps</label>
@@ -49,7 +51,7 @@ export function GuideForm() {
             <input name='upload' type='file' />
             <Divider horizontal>Or</Divider>
             <label>Image/Video URL</label>
-            <input name='link' placeholder='Enter URL' />
+            <input onClick={handleChange} name='link' placeholder='Enter URL' />
           </Form.Field>
           <Button color='blue' style={{with:'100%'}} type='submit'>Submit</Button>
         </Form>
