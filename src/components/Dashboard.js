@@ -4,7 +4,8 @@ import { NavBar } from './NavBar';
 
 export function Dashboard() {
   const [ visible, setVisible ] = useState(false);
-  
+  const toggleSidebar = () => setVisible( prevState => !prevState);
+
   return(
     <div>
       <NavBar />
@@ -15,7 +16,8 @@ export function Dashboard() {
           animation='overlay'
           icon='labeled'
           inverted
-          onHide={this.handleSidebarHide}
+          color='blue'
+          onHide={toggleSidebar}
           vertical
           visible={visible}
           width='thin'
