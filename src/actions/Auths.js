@@ -1,7 +1,7 @@
 import * as types from './index';
 import axios from 'axios';
 
-export const registerUser = (user) => (dispatch) => {
+export const registerUser = (user, history) => (dispatch) => {
   dispatch({type: types.SIGNING_UP});
   axios.post(`http://localhost:8000/register`, user)
   .then(response => {
@@ -10,6 +10,7 @@ export const registerUser = (user) => (dispatch) => {
       type: types.LOGIN_SUCCESS,
       payload: response.data,
     });
+    history.push('/');
   })
   .catch(err => {
     dispatch({
@@ -19,7 +20,7 @@ export const registerUser = (user) => (dispatch) => {
   });
 }
 
-export const loginUser = (user) => (dispatch) => {
+export const loginUser = (user, history) => (dispatch) => {
   dispatch({type: types.LOGGING_IN});
   axios.post(`http://localhost:8000/login`, user)
   .then(response => {
@@ -28,6 +29,7 @@ export const loginUser = (user) => (dispatch) => {
       type: types.LOGIN_SUCCESS,
       payload: response.data,
     });
+    history.push('/');
   })
   .catch(err => {
     dispatch({
