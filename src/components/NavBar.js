@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
-import { Menu, Input, Icon, Responsive } from 'semantic-ui-react'
+import React, { useState } from 'react';
+import { Menu, Input, Icon, Responsive } from 'semantic-ui-react';
 import { connect } from 'react-redux';
+import { openGuideForm } from '../actions';
 
 function NavBar(props) {
   const [activeItem, setActiveItem] = useState('Home');
@@ -69,4 +70,4 @@ function NavBar(props) {
  );
 }
 
-export default connect(() => ({}), {})(NavBar);
+export default connect(() => ({}), { openGuideForm })(NavBar);
