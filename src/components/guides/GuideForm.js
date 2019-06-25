@@ -7,11 +7,17 @@ export function GuideForm() {
     type: '',
     description: '',
     link: '',
+    step: '',
     steps: [],
   }
   const [guide, setGuide] = useState(initialState);
 
   const handleChange = (event, { name, value }) => setGuide(prevGuide => ({...prevGuide, [name]: value}));
+  const handleAddClick = () => {
+    if(guide.step.trim() !== '' && guide.steps.length < 5) {
+      setGuide(prevGuide => ({...prevGuide, steps: [...prevGuide.steps, prevGuide.step]}));
+    }
+  }
 
   return(
     <Modal closeIcon>
@@ -43,8 +49,8 @@ export function GuideForm() {
                 </List.Item>
               ))}
             </Transition.Group>
-            <textarea name='step' placeholder='Enter a Step' />
-            <Button type='button'><Icon name='add square' /></Button>
+            <textarea onClick={handleChange} name='step' placeholder='Enter a Step' />
+            <Button onClick={handleAddClick} type='button'><Icon name='add square' /></Button>
           </Form.Field>
           <Form.Field>
             <label>Image/Video Upload</label>
