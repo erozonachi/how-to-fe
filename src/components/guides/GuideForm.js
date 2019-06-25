@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { mapStateToProps } from '../mapState';
 import { closeGuideForm } from '../../actions';
 
-function GuideForm() {
+function GuideForm(props) {
   const initialState = {
     title: '',
     type: '',
@@ -24,9 +24,14 @@ function GuideForm() {
   const handleRemoveClick = (index) => {
     setGuide(prevGuide => ({...prevGuide, steps: [...prevGuide.steps.splice(index, 1)]}));
   }
+  const handleClose = () => props.closeGuideForm();
 
   return(
-    <Modal closeIcon>
+    <Modal
+      open={props.guidesData.guideFormOpen}
+      onClose={handleClose}
+      closeIcon
+    >
       <Header icon='add circle' content='Create How-to Guide' />
       <Modal.Content>
         <Form>
