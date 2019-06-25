@@ -8,7 +8,7 @@ export function Dashboard() {
 
   return(
     <div>
-      <NavBar />
+      <NavBar handleToggle={toggleSidebar} />
 
       <Sidebar.Pushable as={Segment}>
         <Sidebar
