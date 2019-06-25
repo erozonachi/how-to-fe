@@ -16,3 +16,4 @@ export const CLOSE_GUIDE_FORM = 'CLOSE_GUIDE_FORM';
 export const BASE_URL = `http://localhost:8000/`;
 
 export { registerUser, loginUser } from './Auths';
+export { openGuideForm, } from './Guides';
