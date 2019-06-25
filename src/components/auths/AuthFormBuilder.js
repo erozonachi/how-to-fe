@@ -121,9 +121,12 @@ function AuthFormBuilder(props) {
           <Button primary type='submit' animated='fade'>
             <Button.Content visible>
               {(props.signUp && 'Sign Up') || 'Login'}
+              &nbsp;
+              {(props.auth.signingUp || props.auth.loggingIn) && <Icon loading name='spinner' />}
             </Button.Content>
             <Button.Content hidden>
-              {(props.signUp && <Icon name='user plus' />) || <Icon name='sign in' />}
+              {((props.auth.signingUp || props.auth.loggingIn) && <Icon loading name='spinner' />) ||
+                ((props.signUp && <Icon name='user plus' />) || <Icon name='sign in' />)}
             </Button.Content>
           </Button>
         </Form>
