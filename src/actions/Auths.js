@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const registerUser = (user, history) => (dispatch) => {
   dispatch({type: types.SIGNING_UP});
-  axios.post(`http://localhost:8000/register`, user)
+  axios.post(`${types.BASE_URL}register`, user)
   .then(response => {
     localStorage.setItem('howToAccessToken', response.data.token);
     dispatch({
@@ -22,7 +22,7 @@ export const registerUser = (user, history) => (dispatch) => {
 
 export const loginUser = (user, history) => (dispatch) => {
   dispatch({type: types.LOGGING_IN});
-  axios.post(`http://localhost:8000/login`, user)
+  axios.post(`${types.BASE_URL}login`, user)
   .then(response => {
     localStorage.setItem('howToAccessToken', response.data.token);
     dispatch({
