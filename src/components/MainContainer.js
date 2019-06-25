@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
-import { SignUpForm } from './auths';
+import { SignUpForm, LoginForm } from './auths';
 import { Dashboard } from './Dashboard';
 
 export function MainContainer() {
@@ -22,6 +22,10 @@ export function MainContainer() {
       <Route 
         path='/signup'
         component={SignUpForm}
+      />
+      <Route 
+        path='/login'
+        component={LoginForm}
       />
     </Router>
   );
