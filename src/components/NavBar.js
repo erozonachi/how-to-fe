@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Menu, Input, Icon, Responsive } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { openGuideForm } from '../actions';
+import GuideForm from './guides/GuideForm';
 
 function NavBar(props) {
   const [activeItem, setActiveItem] = useState('Home');
@@ -57,15 +58,19 @@ function NavBar(props) {
         >
           <Icon name='heart outline' />
         </Responsive>
-        <Responsive 
-          as={Menu.Item} 
-          minWidth={Responsive.onlyTablet.minWidth}
-          name='AddGuide'
-          active={activeItem === 'AddGuide'}
-          onClick={openGuideForm}
-        >
-          <Icon name='add' />
-        </Responsive>
+        <GuideForm 
+          trigger={
+            <Responsive 
+              as={Menu.Item} 
+              minWidth={Responsive.onlyTablet.minWidth}
+              name='AddGuide'
+              active={activeItem === 'AddGuide'}
+              onClick={openGuideForm}
+            >
+              <Icon name='add' />
+            </Responsive>
+          }
+        />
     </Menu.Menu>
 </Menu>
  );

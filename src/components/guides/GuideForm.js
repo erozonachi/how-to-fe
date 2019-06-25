@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Header, Icon, Modal, Form, Button, Divider, Transition, List, } from 'semantic-ui-react';
+import { Button, Header, Icon, Modal, Form, Divider, Transition, List, } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { mapStateToProps } from '../mapState';
 import { closeGuideForm } from '../../actions';
@@ -28,6 +28,7 @@ function GuideForm(props) {
 
   return(
     <Modal
+      trigger={props.trigger}
       open={props.guidesData.guideFormOpen}
       onClose={handleClose}
       closeIcon
