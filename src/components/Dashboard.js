@@ -10,7 +10,7 @@ export function Dashboard() {
     <div>
       <NavBar handleToggle={toggleSidebar} />
 
-      <Sidebar.Pushable as={Segment}>
+      <Sidebar.Pushable as={Segment} style={{minHeight: '100vh', margin: '0 auto', width: '100%'}}>
         <Sidebar
           as={Menu}
           animation='overlay'
