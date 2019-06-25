@@ -1,16 +1,18 @@
 import React, { useState } from 'react'
 import { Menu, Input, Icon } from 'semantic-ui-react'
 
-export function NavBar() {
+export function NavBar(props) {
   const [activeItem, setActiveItem] = useState('Home');
 
   const handleItemClick = (event, { name }) => setActiveItem(name);
+  const handleToggle = () => props.handleToggle();
   
  return(
   <Menu color='blue' inverted attached='top'>
     <Menu.Menu position='left'>
       <Menu.Item
         name='Menu'
+        onClick={handleToggle}
       >
         <Icon name='bars' />
       </Menu.Item>
