@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Header, Icon, Menu, Segment, Sidebar, Image } from 'semantic-ui-react';
-import { NavBar } from './NavBar';
+import NavBar from './NavBar';
 
 export function Dashboard() {
   const [ visible, setVisible ] = useState(false);

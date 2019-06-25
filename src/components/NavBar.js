@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Menu, Input, Icon, Responsive } from 'semantic-ui-react'
+import { connect } from 'react-redux';
 
-export function NavBar(props) {
+function NavBar(props) {
   const [activeItem, setActiveItem] = useState('Home');
 
   const handleItemClick = (event, { name }) => setActiveItem(name);
@@ -67,3 +68,5 @@ export function NavBar(props) {
 </Menu>
  );
 }
+
+export default connect(() => ({}), {})(NavBar);
