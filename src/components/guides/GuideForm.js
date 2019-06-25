@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Header, Icon, Modal, Form, Button, Divider, Transition, List, } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { mapStateToProps } from '../mapState';
+import { closeGuideForm } from '../../actions';
 
 function GuideForm() {
   const initialState = {
@@ -75,4 +76,4 @@ function GuideForm() {
   );
 }
 
-export default connect(mapStateToProps, {})(GuideForm);
+export default connect(mapStateToProps, { closeGuideForm })(GuideForm);
