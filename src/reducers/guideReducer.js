@@ -1,0 +1,73 @@
+import * as types from '../actions';
+
+const initialState = {
+  guides: [],
+  error: null,
+  fetchingGuides: false,
+  creatingGuide: false,
+  updatingGuide: false,
+  deletingGuide: false,
+  readingGuide: false,
+  likingGuide: false,
+  tryingGuide: false,
+};
+
+export function guideReducer(state = initialState, action) {
+  switch(action.type) {
+    case types.SUCCESS:
+      return {
+        ...initialState,
+        guides: action.payload,
+      };
+    case types.FAILURE:
+      return {
+        ...initialState,
+        guides: [...state.guides],
+        error: action.payload.error,
+      };
+    case types.FETCHING_GUIDES:
+      return {
+        ...initialState,
+        guides: [...state.guides],
+        fetchingGuides: true,
+      };
+    case types.CREATING_GUIDE:
+      return {
+        ...initialState,
+        guides: [...state.guides],
+        creatingGuide: true,
+      };
+    case types.UPDATING_GUIDE:
+      return {
+        ...initialState,
+        guides: [...state.guides],
+        updatingGuide: true,
+      };
+    case types.DELETING_GUIDE:
+      return {
+        ...initialState,
+        guides: [...state.guides],
+        deletingGuide: true,
+      };
+    case types.READING_GUIDE:
+      return {
+        ...initialState,
+        guides: [...state.guides],
+        readingGuide: true,
+      };
+    case types.LIKING_GUIDE:
+      return {
+        ...initialState,
+        guides: [...state.guides],
+        likingGuide: true,
+      };
+    case types.TRYING_GUIDE:
+      return {
+        ...initialState,
+        guides: [...state.guides],
+        tryingGuide: true,
+      };
+    default:
+      return state;
+  }
+}
