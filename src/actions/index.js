@@ -12,6 +12,7 @@ export const READING_GUIDE = 'READING_GUIDE';
 export const LIKING_GUIDE = 'LIKING_GUIDE';
 export const TRYING_GUIDE = 'TRYING_GUIDE';
 export const GUIDE_FORM_OPEN = 'GUIDE_FORM_OPEN';
+export const CLOSE_GUIDE_FORM = 'CLOSE_GUIDE_FORM';
 export const BASE_URL = `http://localhost:8000/`;
 
 export { registerUser, loginUser } from './Auths';
