@@ -18,6 +18,9 @@ export function GuideForm() {
       setGuide(prevGuide => ({...prevGuide, steps: [...prevGuide.steps, prevGuide.step]}));
     }
   }
+  const handleRemoveClick = (index) => {
+    setGuide(prevGuide => ({...prevGuide, steps: [...prevGuide.steps.splice(index, 1)]}));
+  }
 
   return(
     <Modal closeIcon>
@@ -42,8 +45,7 @@ export function GuideForm() {
               {guide.steps.map((item, index) => (
                 <List.Item key={index}>
                   <List.Content floated='right'>
-                    <Icon name='remove' />
-                    <Icon name='edit' />
+                    <Icon onClick={() => handleRemoveClick(index)} name='remove' />
                   </List.Content>
                   <List.Content>{item}</List.Content>
                 </List.Item>
