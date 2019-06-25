@@ -28,7 +28,7 @@ function AuthFormBuilder(props) {
     setFormError({...errorDefaults});
 
     if(target.placeholder.includes('Username')) {
-      if(target.value.match(/\s/g)) {
+      if(props.signUp && target.value.match(/\s/g)) {
         setFormError( (prevError) => ({
           ...prevError,
           title: 'Malformed Username',
@@ -57,13 +57,13 @@ function AuthFormBuilder(props) {
         title: 'All Fields Required',
         message: 'Please fill in blank input fields',
       }));
-    } else if(formInputs.username.match(/\s/g)) {
+    } else if(props.signUp && formInputs.username.match(/\s/g)) {
       setFormError( (prevError) => ({
         ...prevError,
         title: 'Malformed Username',
         message: 'Username must not contain whitespaces',
       }));
-    } else if(formInputs.password !== formInputs.confirm) {
+    } else if(props.signUp && (formInputs.password !== formInputs.confirm)) {
       setFormError( (prevError) => ({
         ...prevError,
         title: 'Password Mismatch',
