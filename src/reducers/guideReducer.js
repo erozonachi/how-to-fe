@@ -74,6 +74,12 @@ export function guideReducer(state = initialState, action) {
         guides: [...state.guides],
         guideFormOpen: true,
       };
+    case types.CLOSE_GUIDE_FORM:
+      return {
+        ...initialState,
+        guides: [...state.guides],
+        guideFormOpen: false,
+      };
     default:
       return state;
   }
