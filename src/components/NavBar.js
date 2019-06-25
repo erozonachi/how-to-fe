@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Menu, Input, Icon } from 'semantic-ui-react'
+import { Menu, Input, Icon, Responsive } from 'semantic-ui-react'
 
 export function NavBar(props) {
   const [activeItem, setActiveItem] = useState('Home');
@@ -23,38 +23,46 @@ export function NavBar(props) {
     </Menu.Menu>
 
     <Menu.Menu position='right'>
-      <Menu.Item
+      <Responsive 
+        as={Menu.Item} 
+        minWidth={Responsive.onlyTablet.minWidth}
         name='Home'
         active={activeItem === 'Home'}
         onClick={handleItemClick}
       >
-        <Icon name='home' />
-      </Menu.Item>
+          <Icon name='home' />
+      </Responsive>
       <Menu.Item>
         <Input icon='search' placeholder='Search...' />
       </Menu.Item>
 
-      <Menu.Item
+      <Responsive 
+        as={Menu.Item} 
+        minWidth={Responsive.onlyTablet.minWidth}
         name='AllGuides'
         active={activeItem === 'AllGuides'}
         onClick={handleItemClick}
       >
-        <Icon name='th' />
-      </Menu.Item>
-      <Menu.Item
-        name='LikedGuides'
-        active={activeItem === 'LikedGuides'}
-        onClick={handleItemClick}
-      >
-        <Icon name='heart outline' />
-      </Menu.Item>
-      <Menu.Item
-        name='AddGuide'
-        active={activeItem === 'AddGuide'}
-        onClick={handleItemClick}
-      >
-        <Icon name='add' />
-      </Menu.Item>
+          <Icon name='th' />
+        </Responsive>
+        <Responsive 
+          as={Menu.Item} 
+          minWidth={Responsive.onlyTablet.minWidth}
+          name='LikedGuides'
+          active={activeItem === 'LikedGuides'}
+          onClick={handleItemClick}
+        >
+          <Icon name='heart outline' />
+        </Responsive>
+        <Responsive 
+          as={Menu.Item} 
+          minWidth={Responsive.onlyTablet.minWidth}
+          name='AddGuide'
+          active={activeItem === 'AddGuide'}
+          onClick={handleItemClick}
+        >
+          <Icon name='add' />
+        </Responsive>
     </Menu.Menu>
 </Menu>
  );
