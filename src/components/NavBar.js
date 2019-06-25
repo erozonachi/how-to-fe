@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Menu, Input, Icon } from 'semantic-ui-react'
 
 export function NavBar() {
+  const [activeItem, setActiveItem] = useState('Home');
+
+  const handleItemClick = (event, { name }) => setActiveItem(name);
+  
  return(
-  <Menu color='blue' inverted attached='top' pointing>
+  <Menu color='blue' inverted attached='top'>
     <Menu.Menu position='left'>
       <Menu.Item
         name='Menu'
@@ -17,23 +21,35 @@ export function NavBar() {
     </Menu.Menu>
 
     <Menu.Menu position='right'>
-
+      <Menu.Item
+        name='Home'
+        active={activeItem === 'Home'}
+        onClick={handleItemClick}
+      >
+        <Icon name='home' />
+      </Menu.Item>
       <Menu.Item>
         <Input icon='search' placeholder='Search...' />
       </Menu.Item>
 
       <Menu.Item
         name='AllGuides'
+        active={activeItem === 'AllGuides'}
+        onClick={handleItemClick}
       >
         <Icon name='th' />
       </Menu.Item>
       <Menu.Item
         name='LikedGuides'
+        active={activeItem === 'LikedGuides'}
+        onClick={handleItemClick}
       >
         <Icon name='heart outline' />
       </Menu.Item>
       <Menu.Item
         name='AddGuide'
+        active={activeItem === 'AddGuide'}
+        onClick={handleItemClick}
       >
         <Icon name='add' />
       </Menu.Item>
