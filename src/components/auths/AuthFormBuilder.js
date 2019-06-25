@@ -70,7 +70,16 @@ function AuthFormBuilder(props) {
         message: 'Confirm password does not match password',
       }));
     } else {
-      //handle success
+      props.signUp? 
+        props.registerUser({
+          username: formInputs.username,
+          password: formInputs.password,
+          type: formInputs.isCreator? 'creator' : 'viewer',
+        }) :
+        props.loginUser({
+          username: formInputs.username,
+          password: formInputs.password,
+        });
     }
   }
 
