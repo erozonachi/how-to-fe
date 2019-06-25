@@ -92,6 +92,11 @@ function AuthFormBuilder(props) {
       <div>
         <Header color='blue' as='h2'>{(props.signUp && 'User Registration') || 'User Login'}</Header>
         <Form onSubmit={handleFormSubmit} error>
+          {props.auth.error && <Message
+            error
+            header='Authentication'
+            content={props.auth.error}
+          />}
           {formError.title && <Message
             error
             header={formError.title}
