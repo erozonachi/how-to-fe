@@ -81,7 +81,7 @@ class GuideForm extends Component {
   };
   handleAddClick = () => {
     if(this.state.guide.step.trim() !== '' && this.state.guide.steps.length < 5) {
-      this.setState(prevState => ({guide:{...prevState.guide, steps: [...prevState.guide.steps, prevState.guide.step]}}));
+      this.setState(prevState => ({guide:{...prevState.guide, steps: [...prevState.guide.steps, prevState.guide.step]}, step: '',}));
     }
   }
   handleRemoveClick = (index) => {
