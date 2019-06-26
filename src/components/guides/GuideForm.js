@@ -15,7 +15,11 @@ function GuideForm(props) {
   }
   const [guide, setGuide] = useState(initialState);
 
-  const handleChange = (event, { name, value }) => setGuide(prevGuide => ({...prevGuide, [name]: value}));
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setGuide(prevGuide => ({...prevGuide, [name]: value}));
+  };
   const handleAddClick = () => {
     if(guide.step.trim() !== '' && guide.steps.length < 5) {
       setGuide(prevGuide => ({...prevGuide, steps: [...prevGuide.steps, prevGuide.step]}));
@@ -38,15 +42,15 @@ function GuideForm(props) {
         <Form>
           <Form.Field>
             <label>Title</label>
-            <input onClick={handleChange} name='title' placeholder='Enter Title' />
+            <input onChange={handleChange} name='title' placeholder='Enter Title' />
           </Form.Field>
           <Form.Field>
             <label>Type</label>
-            <input onClick={handleChange} name='type' placeholder='Enter Type' />
+            <input onChange={handleChange} name='type' placeholder='Enter Type' />
           </Form.Field>
           <Form.Field>
             <label>Description</label>
-            <textarea onClick={handleChange} name='description' placeholder='Enter Description' />
+            <textarea onChange={handleChange} name='description' placeholder='Enter Description' />
           </Form.Field>
           <Form.Field>
             <label>Steps</label>
@@ -60,7 +64,7 @@ function GuideForm(props) {
                 </List.Item>
               ))}
             </Transition.Group>
-            <textarea onClick={handleChange} name='step' placeholder='Enter a Step' />
+            <textarea onChange={handleChange} name='step' placeholder='Enter a Step' />
             <Button onClick={handleAddClick} type='button'><Icon name='add square' /></Button>
           </Form.Field>
           <Form.Field>
@@ -68,7 +72,7 @@ function GuideForm(props) {
             <input name='upload' type='file' />
             <Divider horizontal>Or</Divider>
             <label>Image/Video URL</label>
-            <input onClick={handleChange} name='link' placeholder='Enter URL' />
+            <input onChange={handleChange} name='link' placeholder='Enter URL' />
           </Form.Field>
           <Button color='blue' style={{with:'100%'}} type='submit'>Submit</Button>
         </Form>
