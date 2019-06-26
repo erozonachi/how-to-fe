@@ -1,9 +1,10 @@
 import React from 'react';
 import { Card, Button, Icon, Image } from 'semantic-ui-react';
+import { CardContainer } from './StyledComponents';
 
 export default function GuideCard(props) {
   return(
-    <div>
+    <CardContainer>
       <Card>
       {(props.guide.link.toLowerCase().match(/\.jpg$/) ||
           props.guide.link.toLowerCase().match(/\.jpeg$/) ||  
@@ -31,6 +32,6 @@ export default function GuideCard(props) {
           </div>
         </Card.Content>
       </Card>
-    </div>
+    </CardContainer>
   );
 }
