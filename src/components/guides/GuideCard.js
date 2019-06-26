@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, Button, Icon, Image, Embed } from 'semantic-ui-react';
 import { CardContainer } from './StyledComponents';
+import GuideForm from './GuideForm';
 
 export default function GuideCard(props) {
   return(
@@ -35,9 +36,14 @@ export default function GuideCard(props) {
             <Button basic color='orange'>
               <Icon name='like' />
             </Button>
-            {(props.user === props.guide.username) && <Button basic color='blue'>
-              <Icon name='edit' />
-            </Button>}
+            {(props.user === props.guide.username) && <GuideForm 
+              trigger={
+                <Button basic color='blue'>
+                  <Icon name='edit' />
+                </Button>
+              }
+              guide={props.guide}
+            />}
             {(props.user === props.guide.username) && <Button basic color='red'>
               <Icon name='trash' />
             </Button>}
