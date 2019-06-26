@@ -129,6 +129,11 @@ class GuideForm extends Component {
         <Header icon='add circle' content='Create How-to Guide' />
         <Modal.Content>
           <Form onSubmit={this.handleSubmit} error>
+            {this.props.guidesData.error && <Message
+              error
+              header='Guide Error'
+              content={this.props.guidesData.error}
+            />}
             {this.state.formError.title && <Message
               error
               header={this.state.formError.title}
