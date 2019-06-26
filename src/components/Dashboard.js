@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Header, Icon, Menu, Segment, Sidebar, Image } from 'semantic-ui-react';
 import NavBar from './NavBar';
+import CardGroup from './guides/CardGroup';
 
 export function Dashboard() {
   const [ visible, setVisible ] = useState(false);
@@ -62,8 +63,7 @@ export function Dashboard() {
 
         <Sidebar.Pusher>
           <Segment basic>
-            <Header as='h3'>Dashboard Content</Header>
-            <Image src='https://react.semantic-ui.com/images/wireframe/paragraph.png' />
+            <CardGroup />
           </Segment>
         </Sidebar.Pusher>
       </Sidebar.Pushable>
