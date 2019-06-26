@@ -68,3 +68,21 @@ export const updateGuide = (guide, id) => (dispatch) => {
     });
   });
 }
+
+export const deleteGuide = (id) => (dispatch) => {
+  dispatch({type: types.DELETING_GUIDE});
+  authAxios.delete(`${types.BASE_URL}guides/${id}`)
+  .then(response => {
+    dispatch({
+      type: types.SUCCESS,
+      message: 'Guide delete successful',
+    });
+    dispatch(fetchGuides());
+  })
+  .catch(err => {
+    dispatch({
+      type: types.FAILURE,
+      payload: {error: err.response.data.message || err.message},
+    });
+  });
+}
