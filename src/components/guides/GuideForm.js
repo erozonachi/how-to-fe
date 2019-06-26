@@ -62,8 +62,23 @@ class GuideForm extends Component {
               },
             });
             return;
+          } else {
+            this.cloudUpload(this.fileUpload.current.files[0])
+            .then(response => {
+              this.setState(prevState => ({guide:{...prevState.guide, link: response.data.secure_url}}));
+            })
+            .catch(error => {
+              this.setState({
+                formError: {
+                  title: error.message,
+                  message: 'File upload failed, try again',
+                },
+              });
+            });
+            return;
           }
         }
+        //success
     } else {
       this.setState({
         formError: {
