@@ -1,8 +1,10 @@
 import React from 'react';
 import GuideCard from './GuideCard'
 import { GroupContainer } from './StyledComponents';
+import { connect } from 'react-redux';
+import { mapStateToProps } from '../mapState';
 
-export default function CardGroup(props) {
+function CardGroup(props) {
   return(
     <GroupContainer>
       {
@@ -11,3 +13,5 @@ export default function CardGroup(props) {
     </GroupContainer>
   );
 }
+
+export default connect(mapStateToProps, {})(CardGroup);
