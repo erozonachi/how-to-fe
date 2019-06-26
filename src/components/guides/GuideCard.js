@@ -28,13 +28,19 @@ export default function GuideCard(props) {
           </Card.Meta>
         </Card.Content>
         <Card.Content extra>
-          <div className='ui two buttons'>
-            <Button basic color='blue'>
+          <div className={props.user === props.guide.username? 'ui four buttons' : 'ui two buttons'}>
+            <Button basic color='teal'>
+              <Icon name='eye' />
+            </Button>
+            <Button basic color='orange'>
+              <Icon name='like' />
+            </Button>
+            {(props.user === props.guide.username) && <Button basic color='blue'>
               <Icon name='edit' />
-            </Button>
-            <Button basic color='red'>
+            </Button>}
+            {(props.user === props.guide.username) && <Button basic color='red'>
               <Icon name='trash' />
-            </Button>
+            </Button>}
           </div>
         </Card.Content>
       </Card>

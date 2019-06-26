@@ -14,7 +14,7 @@ function CardGroup(props) {
   return(
     <GroupContainer>
       {
-        props.guidesData.guides.map(guide => <GuideCard key={guide.id} guide={guide} />)
+        props.guidesData.guides.map(guide => <GuideCard key={guide.id} guide={guide} user={props.auth.user.username} />)
       }
     </GroupContainer>
   );
