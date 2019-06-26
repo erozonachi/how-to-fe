@@ -64,8 +64,6 @@ class GuideForm extends Component {
             return;
           }
         }
-        console.log('files: ', this.fileUpload.current.files);
-        console.log('Value: ', this.fileUpload.current.value);
     } else {
       this.setState({
         formError: {
