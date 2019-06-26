@@ -23,6 +23,26 @@ class GuideForm extends Component {
       },
     }
   }
+
+  componentDidMount() {
+    if (this.props.guide) {
+      let list = []
+      for (let key in this.props.guide) {
+        if(key.toString().includes('step')) {
+          list.push(this.props.guide[key])
+        }
+      }
+      this.setState(prevState => ({
+        ...prevState,
+        title: this.props.guide.title,
+        type: this.props.guide.type,
+        description: this.props.guide.description,
+        link: this.props.guide.link,
+        steps: [...list],
+      }));
+    }
+  }
+
   fileUpload = React.createRef();
 
   cloudUpload = (file) => {
