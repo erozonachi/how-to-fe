@@ -26,7 +26,7 @@ function GuideForm(props) {
     }
   }
   const handleRemoveClick = (index) => {
-    setGuide(prevGuide => ({...prevGuide, steps: [...prevGuide.steps.splice(index, 1)]}));
+    setGuide(prevGuide => ({...prevGuide, steps: prevGuide.steps.filter((item, pos) => pos !== index)}));
   }
   const handleClose = () => props.closeGuideForm();
 
