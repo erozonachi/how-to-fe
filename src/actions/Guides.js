@@ -50,3 +50,21 @@ export const createGuide = (guide) => (dispatch) => {
     });
   });
 }
+
+export const updateGuide = (guide, id) => (dispatch) => {
+  dispatch({type: types.UPDATING_GUIDE});
+  authAxios.put(`${types.BASE_URL}guides/${id}`, guide)
+  .then(response => {
+    dispatch({
+      type: types.SUCCESS,
+      message: 'Guide update successful',
+    });
+    dispatch(fetchGuides());
+  })
+  .catch(err => {
+    dispatch({
+      type: types.FAILURE,
+      payload: {error: err.response.data.message || err.message},
+    });
+  });
+}
