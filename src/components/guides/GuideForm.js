@@ -48,7 +48,7 @@ class GuideForm extends Component {
 
     if (guide.title.trim() !== '' && guide.type.trim() !== '' && guide.description.trim() !== '' && 
       guide.steps.length > 0 && (guide.link.trim() !== '' || this.fileUpload.current.files.length > 0)) {
-        if (this.fileUpload.current.files && this.fileUpload.current.files[0].name.trim() !== '') {
+        if (this.fileUpload.current.files.length > 0) {
           if (!this.fileUpload.current.files[0].name.toLowerCase().match(/\.jpg$/) && 
           !this.fileUpload.current.files[0].name.toLowerCase().match(/\.jpeg$/) &&  
           !this.fileUpload.current.files[0].name.toLowerCase().match(/\.png$/) && 
