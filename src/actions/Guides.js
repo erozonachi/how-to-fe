@@ -14,3 +14,20 @@ export const openGuideForm = () => dispatch => {
 export const closeGuideForm = () => dispatch => {
   dispatch({type: types.CLOSE_GUIDE_FORM});
 }
+
+export const createGuide = (guide) => (dispatch) => {
+  dispatch({type: types.CREATING_GUIDE});
+  authAxios.post(`${types.BASE_URL}guides`, guide)
+  .then(response => {
+    dispatch({
+      type: types.SUCCESS,
+      payload: [response.data],
+    });
+  })
+  .catch(err => {
+    dispatch({
+      type: types.FAILURE,
+      payload: {error: err.response.data.message || err.message},
+    });
+  });
+}
