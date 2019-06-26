@@ -14,3 +14,13 @@ export const CardContainer = styled.div`
     width: 98%;
   }
 `;
+
+export const GroupContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+`;
