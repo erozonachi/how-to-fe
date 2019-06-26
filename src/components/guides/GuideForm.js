@@ -3,6 +3,7 @@ import { Button, Header, Icon, Modal, Form, Divider, Transition, List, Message, 
 import { connect } from 'react-redux';
 import { mapStateToProps } from '../mapState';
 import { closeGuideForm } from '../../actions';
+import axios from 'axios';
 
 function GuideForm(props) {
   const initialState = {
@@ -20,6 +21,18 @@ function GuideForm(props) {
   const [guide, setGuide] = useState(initialState);
   const [formError, setFormError] = useState(errorDefaults);
   const fileUpload = React.createRef();
+
+  const cloudUpload = (file) => {
+    const cloudName = 'eneh';
+    const url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
+    const formData = new FormData();
+
+    formData.append('upload_preset', 'politico-eneh');
+    formData.append('tags', 'client_upload');
+    formData.append('file', file);
+
+    return axios.post(url, formData);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
