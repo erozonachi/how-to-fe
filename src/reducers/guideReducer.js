@@ -1,7 +1,7 @@
 import * as types from '../actions';
 
 const initialState = {
-  guides: [],
+  guides: JSON.parse(localStorage.getItem('guidesData')) || [],
   error: null,
   message: null,
   fetchingGuides: false,

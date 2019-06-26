@@ -19,6 +19,7 @@ export const fetchGuides = () => (dispatch) => {
   dispatch({type: types.FETCHING_GUIDES});
   authAxios.get(`${types.BASE_URL}guides`)
   .then(response => {
+    localStorage.setItem('guidesData', JSON.stringify(response.data));
     dispatch({
       type: types.SUCCESS,
       payload: response.data,
