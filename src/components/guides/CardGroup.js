@@ -6,10 +6,11 @@ import { mapStateToProps } from '../mapState';
 import { fetchGuides } from '../../actions';
 
 function CardGroup(props) {
+  const { fetchGuides } = props;
   useEffect(() => {
-    this.fetchGuides();
+    fetchGuides();
   }, []);
-  
+
   return(
     <GroupContainer>
       {
