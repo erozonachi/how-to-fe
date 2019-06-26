@@ -34,11 +34,14 @@ class GuideForm extends Component {
       }
       this.setState(prevState => ({
         ...prevState,
-        title: this.props.guide.title,
-        type: this.props.guide.type,
-        description: this.props.guide.description,
-        link: this.props.guide.link,
-        steps: [...list],
+        guide: {
+          ...prevState.guide,
+          title: this.props.guide.title,
+          type: this.props.guide.type,
+          description: this.props.guide.description,
+          link: this.props.guide.link,
+          steps: [...list],
+        }
       }));
     }
   }

@@ -2,8 +2,12 @@ import React from 'react';
 import { Card, Button, Icon, Image, Embed } from 'semantic-ui-react';
 import { CardContainer } from './StyledComponents';
 import GuideForm from './GuideForm';
+import { openGuideForm } from '../../actions';
+import { connect } from 'react-redux';
 
-export default function GuideCard(props) {
+function GuideCard(props) {
+  const popUpGuideForm = () => props.openGuideForm();
+
   return(
     <CardContainer>
       <Card>
@@ -37,12 +41,12 @@ export default function GuideCard(props) {
               <Icon name='like' />
             </Button>
             {(props.user === props.guide.username) && <GuideForm 
+              guide={props.guide}
               trigger={
-                <Button basic color='blue'>
+                <Button basic color='blue' onClick={popUpGuideForm}>
                   <Icon name='edit' />
                 </Button>
               }
-              guide={props.guide}
             />}
             {(props.user === props.guide.username) && <Button basic color='red'>
               <Icon name='trash' />
@@ -53,3 +57,5 @@ export default function GuideCard(props) {
     </CardContainer>
   );
 }
+
+export default connect(() => ({}), { openGuideForm })(GuideCard);
