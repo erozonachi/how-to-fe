@@ -6,6 +6,7 @@ export const registerUser = (user, history) => (dispatch) => {
   axios.post(`${types.BASE_URL}register`, user)
   .then(response => {
     localStorage.setItem('howToAccessToken', response.data.token);
+    localStorage.setItem('howToUser', JSON.stringify(response.data));
     dispatch({
       type: types.LOGIN_SUCCESS,
       payload: response.data,
@@ -25,6 +26,7 @@ export const loginUser = (user, history) => (dispatch) => {
   axios.post(`${types.BASE_URL}login`, user)
   .then(response => {
     localStorage.setItem('howToAccessToken', response.data.token);
+    localStorage.setItem('howToUser', JSON.stringify(response.data));
     dispatch({
       type: types.LOGIN_SUCCESS,
       payload: response.data,
