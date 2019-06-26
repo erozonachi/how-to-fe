@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Header, Icon, Modal, Form, Divider, Transition, List, } from 'semantic-ui-react';
+import { Button, Header, Icon, Modal, Form, Divider, Transition, List, Message, } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { mapStateToProps } from '../mapState';
 import { closeGuideForm } from '../../actions';
@@ -13,7 +13,45 @@ function GuideForm(props) {
     step: '',
     steps: [],
   }
+  const errorDefaults = {
+    title: null,
+    message: null,
+  };
   const [guide, setGuide] = useState(initialState);
+  const [formError, setFormError] = useState(errorDefaults);
+  const fileUpload = React.createRef();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setFormError({...errorDefaults});
+
+    if (guide.title.trim() !== '' && guide.type.trim() !== '' && guide.description.trim() !== '' && 
+      guide.steps.length > 0 && (guide.link.trim() !== '' || fileUpload.files.length > 0)) {
+        if (fileUpload.files && fileUpload.files[0].name.trim() !== '') {
+          if (!fileUpload.files[0].name.toLowerCase().match(/\.jpg$/) && 
+          !fileUpload.files[0].name.toLowerCase().match(/\.jpeg$/) &&  
+          !fileUpload.files[0].name.toLowerCase().match(/\.png$/) && 
+          !fileUpload.files[0].name.toLowerCase().match(/\.mp4$/)) {
+            delete fileUpload.files;
+            fileUpload.value = '';
+            setFormError( (prevError) => ({
+              ...prevError,
+              title: 'File Upload',
+              message: '.jpg, .png or mp4 extension required',
+            }));
+            return;
+          }
+        }
+        console.log('files: ', fileUpload.files);
+        console.log('Value: ', fileUpload.value);
+    } else {
+      setFormError( (prevError) => ({
+        ...prevError,
+        title: 'All Fields Required',
+        message: 'Please fill in blank input fields',
+      }));
+    }
+  }
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -39,7 +77,12 @@ function GuideForm(props) {
     >
       <Header icon='add circle' content='Create How-to Guide' />
       <Modal.Content>
-        <Form>
+        <Form onSubmit={handleSubmit} error>
+          {formError.title && <Message
+            error
+            header={formError.title}
+            content={formError.message}
+          />}
           <Form.Field>
             <label>Title</label>
             <input onChange={handleChange} name='title' placeholder='Enter Title' />
@@ -71,7 +114,7 @@ function GuideForm(props) {
           </Form.Field>
           <Form.Field>
             <label>Image/Video Upload</label>
-            <input name='upload' type='file' />
+            <input ref={fileUpload} name='upload' type='file' accept=".png,.jpeg,.jpg,.mp4,.MP4" />
             <Divider horizontal>Or</Divider>
             <label>Image/Video URL</label>
             <input onChange={handleChange} name='link' placeholder='Enter URL' />
