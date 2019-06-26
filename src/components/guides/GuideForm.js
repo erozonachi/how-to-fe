@@ -77,11 +77,6 @@ function GuideForm(props) {
           <Button color='blue' style={{with:'100%'}} type='submit'>Submit</Button>
         </Form>
       </Modal.Content>
-      <Modal.Actions>
-        <Button color='blue'>
-          <Icon name='remove' /> Close
-        </Button>
-      </Modal.Actions>
     </Modal>
   );
 }
