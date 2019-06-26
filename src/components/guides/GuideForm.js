@@ -145,15 +145,15 @@ class GuideForm extends Component {
             />}
             <Form.Field>
               <label>Title</label>
-              <input onChange={this.handleChange} name='title' placeholder='Enter Title' />
+              <input onChange={this.handleChange} name='title' placeholder='Enter Title' value={this.state.guide.title} />
             </Form.Field>
             <Form.Field>
               <label>Type</label>
-              <input onChange={this.handleChange} name='type' placeholder='Enter Type' />
+              <input onChange={this.handleChange} name='type' placeholder='Enter Type' value={this.state.guide.type} />
             </Form.Field>
             <Form.Field>
               <label>Description</label>
-              <textarea onChange={this.handleChange} name='description' placeholder='Enter Description' />
+              <textarea onChange={this.handleChange} name='description' placeholder='Enter Description' value={this.state.guide.description} />
             </Form.Field>
             <Form.Field>
               <label>Steps</label>
@@ -167,7 +167,7 @@ class GuideForm extends Component {
                   </List.Item>
                 ))}
               </Transition.Group>
-              <textarea onChange={this.handleChange} name='step' placeholder='Enter a Step' />
+              <textarea onChange={this.handleChange} name='step' placeholder='Enter a Step' value={this.state.guide.step} />
               <Button onClick={this.handleAddClick} style={{marginTop:'.5em'}} type='button'>
                 <Icon name='add' />&nbsp;Add Step
               </Button>
@@ -177,7 +177,7 @@ class GuideForm extends Component {
               <input ref={this.fileUpload} name='upload' type='file' accept=".png,.jpeg,.jpg,.mp4,.MP4" />
               <Divider horizontal>Or</Divider>
               <label>Image/Video URL</label>
-              <input onChange={this.handleChange} name='link' placeholder='Enter URL' />
+              <input onChange={this.handleChange} name='link' placeholder='Enter URL' value={this.state.guide.link} />
             </Form.Field>
             <Button color='blue' style={{with:'100%'}} type='submit'>Submit&nbsp;
               {(this.props.guidesData.creatingGuide || this.props.guidesData.updatingGuide) && <Icon loading name='spinner' />}</Button>
