@@ -170,7 +170,8 @@ class GuideForm extends Component {
               <label>Image/Video URL</label>
               <input onChange={this.handleChange} name='link' placeholder='Enter URL' />
             </Form.Field>
-            <Button color='blue' style={{with:'100%'}} type='submit'>Submit</Button>
+            <Button color='blue' style={{with:'100%'}} type='submit'>Submit&nbsp;
+              {(this.props.guidesData.creatingGuide || this.props.guidesData.updatingGuide) && <Icon loading name='spinner' />}</Button>
           </Form>
         </Modal.Content>
       </Modal>
