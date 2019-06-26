@@ -29,11 +29,11 @@ export default function GuideCard(props) {
         </Card.Content>
         <Card.Content extra>
           <div className='ui two buttons'>
-            <Button basic color='green'>
-              Edit
+            <Button basic color='blue'>
+              <Icon name='edit' />
             </Button>
             <Button basic color='red'>
-              Delete
+              <Icon name='trash' />
             </Button>
           </div>
         </Card.Content>
