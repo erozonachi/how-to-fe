@@ -1,8 +1,8 @@
 import React from 'react';
 import AuthFormBuilder from './AuthFormBuilder';
 
-export function SignUpForm(props) {
+export function LoginForm(props) {
   return(
-    <AuthFormBuilder signUp={true} {...props} />
+    <AuthFormBuilder signUp={false} {...props} />
   );
 }

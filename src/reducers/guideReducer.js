@@ -10,6 +10,7 @@ const initialState = {
   readingGuide: false,
   likingGuide: false,
   tryingGuide: false,
+  guideFormOpen: false,
 };
 
 export function guideReducer(state = initialState, action) {
@@ -66,6 +67,18 @@ export function guideReducer(state = initialState, action) {
         ...initialState,
         guides: [...state.guides],
         tryingGuide: true,
+      };
+    case types.GUIDE_FORM_OPEN:
+      return {
+        ...initialState,
+        guides: [...state.guides],
+        guideFormOpen: true,
+      };
+    case types.CLOSE_GUIDE_FORM:
+      return {
+        ...initialState,
+        guides: [...state.guides],
+        guideFormOpen: false,
       };
     default:
       return state;
