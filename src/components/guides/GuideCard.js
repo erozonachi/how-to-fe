@@ -10,10 +10,16 @@ export default function GuideCard(props) {
           props.guide.link.toLowerCase().match(/\.jpeg$/) ||  
           props.guide.link.toLowerCase().match(/\.png$/))?
           <Image alt={props.guide.title} src={props.guide.link} wrapped ui={false} /> :
-          <Embed
-            icon='play circle'
-            url={props.guide.link}
-          />
+          (props.guide.link.toLowerCase().includes('youtube')? 
+            <Embed
+              icon='play circle'
+              id={props.guide.link.split('=')[1]}
+              source='youtube'
+            /> :
+            <Embed
+              icon='play circle'
+              url={props.guide.link}
+            />)
       }
         <Card.Content>
           <Card.Header>{props.guide.title}</Card.Header>
