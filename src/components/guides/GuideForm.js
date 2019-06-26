@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Header, Icon, Modal, Form, Divider, Transition, List, Message, } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { mapStateToProps } from '../mapState';
-import { closeGuideForm } from '../../actions';
+import { closeGuideForm, createGuide, } from '../../actions';
 import axios from 'axios';
 
 class GuideForm extends Component {
@@ -79,6 +79,7 @@ class GuideForm extends Component {
             .then(response => {
               this.setState(prevState => ({guide:{...prevState.guide, link: response.data.secure_url}}));
               payload['link'] = this.state.guide.link;
+              this.props.createGuide(payload);
             })
             .catch(error => {
               this.setState({
@@ -91,7 +92,7 @@ class GuideForm extends Component {
             return;
           }
         }
-        //success
+        this.props.createGuide(payload);
     } else {
       this.setState({
         formError: {
@@ -178,4 +179,4 @@ class GuideForm extends Component {
 
 }
 
-export default connect(mapStateToProps, { closeGuideForm })(GuideForm);
+export default connect(mapStateToProps, { closeGuideForm, createGuide, })(GuideForm);
