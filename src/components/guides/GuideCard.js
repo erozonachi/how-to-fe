@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Button, Icon, Image } from 'semantic-ui-react';
+import { Card, Button, Icon, Image, Embed } from 'semantic-ui-react';
 import { CardContainer } from './StyledComponents';
 
 export default function GuideCard(props) {
