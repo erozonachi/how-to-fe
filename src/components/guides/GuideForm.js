@@ -65,7 +65,9 @@ function GuideForm(props) {
               ))}
             </Transition.Group>
             <textarea onChange={handleChange} name='step' placeholder='Enter a Step' />
-            <Button onClick={handleAddClick} type='button'><Icon name='add square' /></Button>
+            <Button onClick={handleAddClick} style={{marginTop:'.5em'}} type='button'>
+              <Icon name='add' />&nbsp;Add Step
+            </Button>
           </Form.Field>
           <Form.Field>
             <label>Image/Video Upload</label>
