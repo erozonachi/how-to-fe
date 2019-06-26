@@ -3,6 +3,7 @@ import * as types from '../actions';
 const initialState = {
   guides: [],
   error: null,
+  message: null,
   fetchingGuides: false,
   creatingGuide: false,
   updatingGuide: false,
@@ -18,7 +19,8 @@ export function guideReducer(state = initialState, action) {
     case types.SUCCESS:
       return {
         ...initialState,
-        guides: action.payload,
+        guides: action.payload || [...state.guides],
+        message: action.message || null,
       };
     case types.FAILURE:
       return {

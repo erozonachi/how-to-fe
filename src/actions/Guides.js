@@ -36,6 +36,10 @@ export const createGuide = (guide) => (dispatch) => {
   dispatch({type: types.CREATING_GUIDE});
   authAxios.post(`${types.BASE_URL}guides`, guide)
   .then(response => {
+    dispatch({
+      type: types.SUCCESS,
+      message: 'New guide created',
+    });
     fetchGuides();
   })
   .catch(err => {
