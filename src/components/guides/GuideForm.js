@@ -48,6 +48,18 @@ class GuideForm extends Component {
 
     if (guide.title.trim() !== '' && guide.type.trim() !== '' && guide.description.trim() !== '' && 
       guide.steps.length > 0 && (guide.link.trim() !== '' || this.fileUpload.current.files.length > 0)) {
+        let steps = {};
+        guide.steps.forEach((step, index) => {
+          steps[`step_${index+1}`] = step;
+        });
+        let payload = {
+          title: guide.title,
+          description: guide.description,
+          type: guide.type,
+          user_id: this.props.auth.user.id,
+          ...steps,
+          link: guide.link,
+        }
         if (this.fileUpload.current.files.length > 0) {
           if (!this.fileUpload.current.files[0].name.toLowerCase().match(/\.jpg$/) && 
           !this.fileUpload.current.files[0].name.toLowerCase().match(/\.jpeg$/) &&  
@@ -66,6 +78,7 @@ class GuideForm extends Component {
             this.cloudUpload(this.fileUpload.current.files[0])
             .then(response => {
               this.setState(prevState => ({guide:{...prevState.guide, link: response.data.secure_url}}));
+              payload['link'] = this.state.guide.link;
             })
             .catch(error => {
               this.setState({
