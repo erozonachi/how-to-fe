@@ -49,7 +49,8 @@ export const createGuide = (guide) => (dispatch) => {
       type: types.SUCCESS,
       message: 'New guide created',
     });
-    fetchGuides();
+    dispatch(fetchGuides());
+    dispatch({type: types.CLOSE_GUIDE_FORM});
   })
   .catch(err => {
     dispatch({
@@ -68,6 +69,7 @@ export const updateGuide = (guide, id) => (dispatch) => {
       message: 'Guide update successful',
     });
     dispatch(fetchGuides());
+    dispatch({type: types.CLOSE_GUIDE_FORM});
   })
   .catch(err => {
     dispatch({
@@ -86,6 +88,7 @@ export const deleteGuide = (id) => (dispatch) => {
       message: 'Guide delete successful',
     });
     dispatch(fetchGuides());
+    dispatch({type: types.CLOSE_CONFIRM});
   })
   .catch(err => {
     dispatch({
