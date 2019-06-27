@@ -18,4 +18,4 @@ export const CLOSE_CONFIRM = 'CLOSE_CONFIRM';
 export const BASE_URL = `http://localhost:8000/`;
 
 export { registerUser, loginUser } from './Auths';
-export { openGuideForm, closeGuideForm, createGuide, fetchGuides, updateGuide, openConfirm, closeConfrim, } from './Guides';
+export { openGuideForm, closeGuideForm, createGuide, fetchGuides, updateGuide, openConfirm, closeConfrim, deleteGuide, } from './Guides';
