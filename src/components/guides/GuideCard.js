@@ -6,6 +6,7 @@ import GuideForm from './GuideForm';
 import { openGuideForm, openConfirm, readGuide, } from '../../actions';
 import { connect } from 'react-redux';
 import ConfirmDelete from './ConfirmDelete';
+import propTypes from 'prop-types';
 
 function GuideCard(props) {
   const popUpGuideForm = () => {
@@ -74,6 +75,10 @@ function GuideCard(props) {
       </Card>
     </CardContainer>
   );
+}
+
+GuideCard.propTypes = {
+  guide: propTypes.object.isRequired
 }
 
 export default connect(() => ({}), { openGuideForm, openConfirm, readGuide, })(GuideCard);
