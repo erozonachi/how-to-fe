@@ -6,6 +6,11 @@ import { mapStateToProps } from '../mapState';
 
 function SingleGuideView(props) {
   const [viewInfo, setViewInfo] = useState({stepCount: 1});
+  const handleNext = () => {
+    if(props.guidesData.singleRead['step_' + (viewInfo.stepCount + 1)]) {
+      setViewInfo(prevState => ({stepCount: prevState.stepCount + 1}));
+    }
+  }
 
   return (
     <ViewContainer>
@@ -46,7 +51,7 @@ function SingleGuideView(props) {
             <Container>
               <p>{props.guidesData.singleRead['step_' + viewInfo.stepCount]}</p>
             </Container>
-            <Button basic>
+            <Button onClick={handleNext} basic>
             <Icon name='chevron right' />
             </Button>
           </StepSection>
