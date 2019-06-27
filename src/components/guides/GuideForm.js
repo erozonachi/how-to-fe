@@ -51,6 +51,10 @@ class GuideForm extends Component {
     this.stateUpdate();
   }
 
+  componentDidUpdate() {
+    this.stateUpdate();
+  }
+
   fileUpload = React.createRef();
 
   cloudUpload = (file) => {
