@@ -1,8 +1,9 @@
 import React from 'react';
 import { Icon, Image, Embed, Segment, Header, Divider, Container, } from 'semantic-ui-react';
+import { ViewContainer, } from './StyledComponents';
 
 export default function SingleGuideView(props) {
-  <div>
+  <ViewContainer>
     <Segment>
       <Header as='h3'>
         <Icon name='eye' />
@@ -40,5 +41,5 @@ export default function SingleGuideView(props) {
         </div>
       </Segment>
     </Segment>
-  </div>
+  </ViewContainer>
 }
