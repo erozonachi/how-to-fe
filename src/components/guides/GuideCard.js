@@ -4,6 +4,7 @@ import { CardContainer } from './StyledComponents';
 import GuideForm from './GuideForm';
 import { openGuideForm, } from '../../actions';
 import { connect } from 'react-redux';
+import ConfirmDelete from './ConfirmDelete';
 
 function GuideCard(props) {
   const popUpGuideForm = () => {
@@ -50,9 +51,13 @@ function GuideCard(props) {
                 </Button>
               }
             />}
-            {(props.user === props.guide.username) && <Button basic color='red'>
-              <Icon name='trash' />
-            </Button>}
+            {(props.user === props.guide.username) && <ConfirmDelete
+              trigger={
+                <Button basic color='red'>
+                  <Icon name='trash' />
+                </Button>
+              }
+            />}
           </div>
         </Card.Content>
       </Card>
