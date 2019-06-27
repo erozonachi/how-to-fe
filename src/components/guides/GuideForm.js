@@ -8,7 +8,7 @@ import axios from 'axios';
 class GuideForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.initialState = {
       guide: {
         title: '',
         type: '',
@@ -22,6 +22,7 @@ class GuideForm extends Component {
         message: null,
       },
     }
+    this.state = {...this.initialState}
   }
 
   componentDidMount() {
