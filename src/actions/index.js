@@ -19,4 +19,4 @@ export const SEARCH_GUIDES ='SEARCH_GUIDES';
 export const BASE_URL = `http://localhost:8000/`;
 
 export { registerUser, loginUser } from './Auths';
-export { openGuideForm, closeGuideForm, createGuide, fetchGuides, updateGuide, openConfirm, closeConfrim, deleteGuide, searchGuide, } from './Guides';
+export { openGuideForm, closeGuideForm, createGuide, fetchGuides, updateGuide, openConfirm, closeConfrim, deleteGuide, searchGuide, readGuide, } from './Guides';

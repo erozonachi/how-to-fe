@@ -27,6 +27,10 @@ export const closeConfrim = () => dispatch => {
   dispatch({type: types.CLOSE_CONFIRM});
 }
 
+export const readGuide = (guide) => dispatch => {
+  dispatch({type: types.READING_GUIDE, payload: guide});
+}
+
 export const fetchGuides = () => (dispatch) => {
   dispatch({type: types.FETCHING_GUIDES});
   authAxios.get(`${types.BASE_URL}guides`)
