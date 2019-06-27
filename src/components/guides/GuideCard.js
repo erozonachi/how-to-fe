@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Button, Icon, Image, Embed } from 'semantic-ui-react';
 import { CardContainer } from './StyledComponents';
 import GuideForm from './GuideForm';
-import { openGuideForm, } from '../../actions';
+import { openGuideForm, openConfirm, } from '../../actions';
 import { connect } from 'react-redux';
 import ConfirmDelete from './ConfirmDelete';
 
@@ -10,6 +10,9 @@ function GuideCard(props) {
   const popUpGuideForm = () => {
     props.openGuideForm(props.guide);
   };
+  const popUpDelete = () => {
+    props.openConfirm(props.guide.id);
+  }
 
   return(
     <CardContainer>
@@ -53,7 +56,7 @@ function GuideCard(props) {
             />}
             {(props.user === props.guide.username) && <ConfirmDelete
               trigger={
-                <Button basic color='red'>
+                <Button basic color='red' onClick={popUpDelete}>
                   <Icon name='trash' />
                 </Button>
               }
@@ -65,4 +68,4 @@ function GuideCard(props) {
   );
 }
 
-export default connect(() => ({}), { openGuideForm, })(GuideCard);
+export default connect(() => ({}), { openGuideForm, openConfirm, })(GuideCard);
