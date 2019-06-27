@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dashboard } from './Dashboard';
+import Dashboard from './Dashboard';
 import CardGroup from './guides/CardGroup';
 
 export function Home(props) {

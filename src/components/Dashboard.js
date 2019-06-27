@@ -2,7 +2,11 @@ import React, { useState } from 'react'
 import { Icon, Menu, Segment, Sidebar, } from 'semantic-ui-react';
 import NavBar from './NavBar';
 import GuideForm from './guides/GuideForm';
-export function Dashboard(props) {
+import { connect } from 'react-redux';
+import { openGuideForm } from '../actions';
+import { mapStateToProps } from './mapState';
+
+function Dashboard(props) {
   const [ visible, setVisible ] = useState(false);
   const toggleSidebar = () => setVisible( prevState => !prevState);
 
@@ -73,3 +77,5 @@ export function Dashboard(props) {
     </div>
   );
 }
+
+export default connect(mapStateToProps, { openGuideForm })(Dashboard);

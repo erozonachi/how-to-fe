@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dashboard } from './Dashboard';
+import Dashboard from './Dashboard';
 import SingleGuideView from './guides/SingleGuideView';
 
 export function Single(props) {
