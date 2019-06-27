@@ -25,3 +25,13 @@ export const GroupContainer = styled.div`
   width: 100%;
   margin: 0 auto;
 `;
+
+export const ViewContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 800px;
+  width: 100%;
+  margin: .5em auto;
+`;
