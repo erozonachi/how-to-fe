@@ -1,4 +1,4 @@
 export const mapStateToProps = (state) => ({
   auth: state.auth,
-  guidesData: state.auth,
+  guidesData: state.guidesData,
 });

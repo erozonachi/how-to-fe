@@ -1,7 +1,7 @@
 import * as types from '../actions';
 
 const initialState = {
-  user: {},
+  user: JSON.parse(localStorage.getItem('howToUser')) || {},
   error: null,
   signingUp: false,
   loggingIn: false,
