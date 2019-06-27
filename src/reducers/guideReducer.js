@@ -20,55 +20,80 @@ export function guideReducer(state = initialState, action) {
     case types.SUCCESS:
       return {
         ...initialState,
+        guideFormOpen: state.guideFormOpen,
         guides: action.payload || [...state.guides],
+        guide: state.guide,
         message: action.message || null,
       };
     case types.FAILURE:
       return {
         ...initialState,
+        guideFormOpen: state.guideFormOpen,
         guides: [...state.guides],
+        guide: state.guide,
         error: action.payload.error,
       };
     case types.FETCHING_GUIDES:
       return {
         ...initialState,
+        guideFormOpen: state.guideFormOpen,
         guides: [...state.guides],
+        guide: state.guide,
+        message: state.message,
         fetchingGuides: true,
       };
     case types.CREATING_GUIDE:
       return {
         ...initialState,
+        guideFormOpen: state.guideFormOpen,
         guides: [...state.guides],
+        guide: state.guide,
+        message: state.message,
         creatingGuide: true,
       };
     case types.UPDATING_GUIDE:
       return {
         ...initialState,
+        guideFormOpen: state.guideFormOpen,
         guides: [...state.guides],
+        guide: state.guide,
+        message: state.message,
         updatingGuide: true,
       };
     case types.DELETING_GUIDE:
       return {
         ...initialState,
+        guideFormOpen: state.guideFormOpen,
         guides: [...state.guides],
+        guide: state.guide,
+        message: state.message,
         deletingGuide: true,
       };
     case types.READING_GUIDE:
       return {
         ...initialState,
+        guideFormOpen: state.guideFormOpen,
         guides: [...state.guides],
+        guide: state.guide,
+        message: state.message,
         readingGuide: true,
       };
     case types.LIKING_GUIDE:
       return {
         ...initialState,
+        guideFormOpen: state.guideFormOpen,
         guides: [...state.guides],
+        guide: state.guide,
+        message: state.message,
         likingGuide: true,
       };
     case types.TRYING_GUIDE:
       return {
         ...initialState,
+        guideFormOpen: state.guideFormOpen,
         guides: [...state.guides],
+        guide: state.guide,
+        message: state.message,
         tryingGuide: true,
       };
     case types.GUIDE_FORM_OPEN:
