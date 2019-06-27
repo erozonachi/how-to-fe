@@ -42,10 +42,12 @@ function NavBar(props) {
       >
         <Icon name='bars' />
       </Menu.Item>
-      <Menu.Item
-      >
-        <img alt='How-to Logo' src={logo} />
-      </Menu.Item>
+      <Responsive 
+          as={Menu.Item} 
+          minWidth={Responsive.onlyTablet.minWidth}
+        >
+          <img alt='How-to Logo' src={logo} />
+        </Responsive>
     </Menu.Menu>
 
     <Menu.Menu position='right'>
