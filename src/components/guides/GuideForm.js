@@ -47,10 +47,6 @@ class GuideForm extends Component {
           editMode: true,
         });
       }
-    } else {
-      if(this.state.guide.title !== this.initialState.guide.title) {
-        this.setState({...this.initialState});
-      }
     }
   }
 
@@ -58,8 +54,10 @@ class GuideForm extends Component {
     this.stateUpdate();
   }
 
-  componentDidUpdate() {
-    this.stateUpdate();
+  componentDidUpdate(prevProps) {
+    if(!prevProps.guidesData.guide || (this.props.guidesData.guide && prevProps.guidesData.guide.title !== this.props.guidesData.guide.title)) {
+      this.stateUpdate();
+    }
   }
 
   fileUpload = React.createRef();
@@ -145,7 +143,7 @@ class GuideForm extends Component {
   handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    this.setState(prevState => ({guide:{...prevState.guide, [name]: value}}));
+    this.setState({guide: {...this.state.guide, [name]: value}});
   };
   handleAddClick = () => {
     if(this.state.guide.step.trim() !== '' && this.state.guide.steps.length < 5) {
@@ -155,7 +153,10 @@ class GuideForm extends Component {
   handleRemoveClick = (index) => {
     this.setState(prevState => ({guide:{...prevState.guide, steps: prevState.guide.steps.filter((item, pos) => pos !== index)}}));
   }
-  handleClose = () => this.props.closeGuideForm();
+  handleClose = () => {
+    this.props.closeGuideForm();
+    this.setState({...this.initialState});
+  }
 
   render() {
     return(
