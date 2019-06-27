@@ -1,5 +1,5 @@
-import React from 'react';
-import { Card, Button, Icon, Image, Embed } from 'semantic-ui-react';
+import React, { useState, } from 'react';
+import { Card, Button, Icon, Image, Embed, Segment } from 'semantic-ui-react';
 import { CardContainer } from './StyledComponents';
 import GuideForm from './GuideForm';
 import { openGuideForm, openConfirm, } from '../../actions';
@@ -13,10 +13,14 @@ function GuideCard(props) {
   const popUpDelete = () => {
     props.openConfirm(props.guide.id);
   }
+  const [hover, setHover] = useState(false);
+  const handleHover = () => {
+    setHover(!hover);
+  }
 
   return(
-    <CardContainer>
-      <Card>
+    <CardContainer onMouseEnter={handleHover} onMouseLeave={handleHover}>
+      <Card as={Segment} raised={hover}>
       {(props.guide.link.toLowerCase().match(/\.jpg$/) ||
           props.guide.link.toLowerCase().match(/\.jpeg$/) ||  
           props.guide.link.toLowerCase().match(/\.png$/))?
