@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
-import { Header, Icon, Menu, Segment, Sidebar, Image } from 'semantic-ui-react';
+import { Icon, Menu, Segment, Sidebar, } from 'semantic-ui-react';
 import NavBar from './NavBar';
-import CardGroup from './guides/CardGroup';
-
-export function Dashboard() {
+export function Dashboard(props) {
   const [ visible, setVisible ] = useState(false);
   const toggleSidebar = () => setVisible( prevState => !prevState);
 
@@ -63,7 +61,7 @@ export function Dashboard() {
 
         <Sidebar.Pusher>
           <Segment basic>
-            <CardGroup />
+            {props.children}
           </Segment>
         </Sidebar.Pusher>
       </Sidebar.Pushable>
