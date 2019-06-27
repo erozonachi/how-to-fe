@@ -30,7 +30,7 @@ function Dashboard(props) {
         >
           <Menu.Item as='a'>
             <Icon name='user' />
-            {'Eneh - Creator'}
+            {`${props.auth.user.username + ' - ' + props.auth.user.type}`}
           </Menu.Item>
           <Menu.Item as={Link} to='/'>
             <Icon name='home' />
