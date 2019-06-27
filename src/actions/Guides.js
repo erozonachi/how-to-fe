@@ -15,6 +15,10 @@ export const closeGuideForm = () => dispatch => {
   dispatch({type: types.CLOSE_GUIDE_FORM});
 }
 
+export const guideToEdit = (guide) => dispatch => {
+  dispatch({type: types.GUIDE_TO_EDIT, payload: guide});
+}
+
 export const fetchGuides = () => (dispatch) => {
   dispatch({type: types.FETCHING_GUIDES});
   authAxios.get(`${types.BASE_URL}guides`)

@@ -17,4 +17,4 @@ export const GUIDE_TO_EDIT ='GUIDE_TO_EDIT';
 export const BASE_URL = `http://localhost:8000/`;
 
 export { registerUser, loginUser } from './Auths';
-export { openGuideForm, closeGuideForm, createGuide, fetchGuides, updateGuide, } from './Guides';
+export { openGuideForm, closeGuideForm, createGuide, fetchGuides, updateGuide, guideToEdit, } from './Guides';
