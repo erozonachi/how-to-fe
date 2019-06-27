@@ -15,6 +15,7 @@ const initialState = {
   confirmOpen: false,
   guide: null,
   deleteID: null,
+  filteredGuides: null,
 };
 
 export function guideReducer(state = initialState, action) {
@@ -131,6 +132,12 @@ export function guideReducer(state = initialState, action) {
         ...initialState,
         guides: [...state.guides],
         confirmOpen: false,
+      };
+    case types.SEARCH_GUIDES:
+      return {
+        ...initialState,
+        guides: [...state.guides],
+        filteredGuides: action.payload,
       };
     default:
       return state;
