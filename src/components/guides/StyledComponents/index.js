@@ -60,7 +60,7 @@ export const StepSection = styled.div`
     }
   }
   p {
-    padding: 5px 55px;
+    padding: 5px 65px;
     width: 100%;
     text-align: center;
   }
