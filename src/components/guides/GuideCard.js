@@ -1,5 +1,6 @@
 import React, { useState, } from 'react';
 import { Card, Button, Icon, Image, Embed, Segment } from 'semantic-ui-react';
+import { Link, } from 'react-router-dom';
 import { CardContainer } from './StyledComponents';
 import GuideForm from './GuideForm';
 import { openGuideForm, openConfirm, } from '../../actions';
@@ -44,7 +45,7 @@ function GuideCard(props) {
         </Card.Content>
         <Card.Content extra>
           <div className={props.user === props.guide.username? 'ui four buttons' : 'ui two buttons'}>
-            <Button basic color='teal'>
+            <Button basic color='teal' as={Link} to={`/guides/${props.guide.id}`}>
               <Icon name='eye' />
             </Button>
             <Button basic color='orange'>
