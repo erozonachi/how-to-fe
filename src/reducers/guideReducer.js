@@ -12,6 +12,7 @@ const initialState = {
   likingGuide: false,
   tryingGuide: false,
   guideFormOpen: false,
+  guide: null,
 };
 
 export function guideReducer(state = initialState, action) {
@@ -81,6 +82,12 @@ export function guideReducer(state = initialState, action) {
         ...initialState,
         guides: [...state.guides],
         guideFormOpen: false,
+      };
+    case types.GUIDE_TO_EDIT:
+      return {
+        ...initialState,
+        guides: [...state.guides],
+        guide: action.payload,
       };
     default:
       return state;
