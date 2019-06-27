@@ -25,26 +25,30 @@ class GuideForm extends Component {
     this.state = {...this.initialState}
   }
 
-  componentDidMount() {
-    if (this.props.guide) {
+  stateUpdate = () => {
+    if (this.props.guidesData.guide) {
       let list = []
-      for (let key in this.props.guide) {
+      for (let key in this.props.guidesData.guide) {
         if(key.toString().includes('step')) {
-          list.push(this.props.guide[key])
+          list.push(this.props.guidesData.guide[key])
         }
       }
       this.setState(prevState => ({
         ...prevState,
         guide: {
           ...prevState.guide,
-          title: this.props.guide.title,
-          type: this.props.guide.type,
-          description: this.props.guide.description,
-          link: this.props.guide.link,
+          title: this.props.guidesData.guide.title,
+          type: this.props.guidesData.guide.type,
+          description: this.props.guidesData.guide.description,
+          link: this.props.guidesData.guide.link,
           steps: [...list],
         }
       }));
     }
+  }
+
+  componentDidMount() {
+    this.stateUpdate();
   }
 
   fileUpload = React.createRef();
