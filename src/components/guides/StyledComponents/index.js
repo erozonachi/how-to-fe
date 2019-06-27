@@ -47,7 +47,6 @@ export const StepSection = styled.div`
   align-items: center;
   width: 100%;
   position: relative;
-  height: 100px;
   > button {
     position: absolute;
     height: 50px;
