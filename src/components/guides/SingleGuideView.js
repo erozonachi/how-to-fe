@@ -2,8 +2,8 @@ import React from 'react';
 import { Icon, Image, Embed, Segment, Header, Divider, Container, } from 'semantic-ui-react';
 
 export default function SingleGuideView(props) {
-  <Segment>
-    <div>
+  <div>
+    <Segment>
       <Header as='h3'>
         <Icon name='eye' />
         <Header.Content>
@@ -39,6 +39,6 @@ export default function SingleGuideView(props) {
           <Icon as='button' name='chevron circle right' />
         </div>
       </Segment>
-    </div>
-  </Segment>
+    </Segment>
+  </div>
 }
