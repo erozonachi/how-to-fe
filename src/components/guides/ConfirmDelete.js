@@ -10,7 +10,12 @@ function ConfirmDelete(props) {
   const handleDelete = () => props.deleteGuide(props.guidesData.deleteID);
 
   return (
-    <Modal size='mini' open={props.guidesData.confirmOpen} onClose={handleClose}>
+    <Modal 
+      trigger={props.trigger}
+      size='mini' 
+      open={props.guidesData.confirmOpen} 
+      onClose={handleClose} 
+    >
       <Modal.Header>Delete How-to Guide</Modal.Header>
       <Modal.Content>
         <p>Are you sure you want to delete this guide</p>
