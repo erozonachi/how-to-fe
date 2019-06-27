@@ -11,6 +11,11 @@ function SingleGuideView(props) {
       setViewInfo(prevState => ({stepCount: prevState.stepCount + 1}));
     }
   }
+  const handlePrevious = () => {
+    if(props.guidesData.singleRead['step_' + (viewInfo.stepCount - 1)]) {
+      setViewInfo(prevState => ({stepCount: prevState.stepCount - 1}));
+    }
+  }
 
   return (
     <ViewContainer>
@@ -45,7 +50,7 @@ function SingleGuideView(props) {
         <Header as='h4'>Steps</Header>
         <Segment raised>
           <StepSection>
-            <Button basic >
+            <Button onClick={handlePrevious} basic >
             <Icon name='chevron left' />
             </Button>
             <Container>
