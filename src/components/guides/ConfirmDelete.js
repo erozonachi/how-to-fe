@@ -1,7 +1,8 @@
 import React from 'react'
 import { Button, Modal } from 'semantic-ui-react'
+import { connect } from 'react-redux';
 
-export default function ConfirmDelete(props) {
+function ConfirmDelete(props) {
 
   const handleClose = () => null;
 
@@ -18,3 +19,5 @@ export default function ConfirmDelete(props) {
     </Modal>
   );
 }
+
+export default connect(() => ({}), {})(ConfirmDelete);
