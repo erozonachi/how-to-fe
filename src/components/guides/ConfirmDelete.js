@@ -1,6 +1,7 @@
-import React from 'react'
-import { Button, Modal } from 'semantic-ui-react'
+import React from 'react';
+import { Button, Modal } from 'semantic-ui-react';
 import { connect } from 'react-redux';
+import { mapStateToProps } from '../mapState';
 
 function ConfirmDelete(props) {
 
@@ -20,4 +21,4 @@ function ConfirmDelete(props) {
   );
 }
 
-export default connect(() => ({}), {})(ConfirmDelete);
+export default connect(mapStateToProps, {})(ConfirmDelete);
