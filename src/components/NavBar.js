@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { openGuideForm } from '../actions';
 import GuideForm from './guides/GuideForm';
 import Fuse from 'fuse.js';
+import { mapStateToProps } from './mapState';
 
 function NavBar(props) {
   const [activeItem, setActiveItem] = useState('Home');
@@ -95,4 +96,4 @@ function NavBar(props) {
  );
 }
 
-export default connect(() => ({}), { openGuideForm })(NavBar);
+export default connect(mapStateToProps, { openGuideForm })(NavBar);
