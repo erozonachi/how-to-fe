@@ -51,7 +51,6 @@ export const StepSection = styled.div`
   > button {
     position: absolute;
     height: 50px;
-    width: 50px;
     top: 25px;
     &:first-of-type {
       left: 0;
@@ -59,5 +58,10 @@ export const StepSection = styled.div`
     &:last-of-type {
       right: 0;
     }
+  }
+  p {
+    padding: 5px 55px;
+    width: 100%;
+    text-align: center;
   }
 `;

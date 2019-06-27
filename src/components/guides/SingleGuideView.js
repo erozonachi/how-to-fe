@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon, Image, Embed, Segment, Header, Divider, Container, } from 'semantic-ui-react';
+import { Icon, Image, Embed, Segment, Header, Divider, Container, Button, } from 'semantic-ui-react';
 import { ViewContainer, StepSection,  } from './StyledComponents';
 import { connect } from 'react-redux';
 import { mapStateToProps } from '../mapState';
@@ -38,9 +38,15 @@ function SingleGuideView(props) {
         <Header as='h4'>Steps</Header>
         <Segment raised>
           <StepSection>
-            <Icon as='button' name='chevron circle left' />
-            <Container>{'Step 1'}</Container>
-            <Icon as='button' name='chevron circle right' />
+            <Button basic >
+            <Icon name='chevron left' />
+            </Button>
+            <Container>
+              <p>Step 1</p>
+            </Container>
+            <Button basic>
+            <Icon name='chevron right' />
+            </Button>
           </StepSection>
         </Segment>
       </Segment>
