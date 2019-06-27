@@ -1,6 +1,6 @@
 import React from 'react';
 import { Icon, Image, Embed, Segment, Header, Divider, Container, } from 'semantic-ui-react';
-import { ViewContainer, } from './StyledComponents';
+import { ViewContainer, StepSection,  } from './StyledComponents';
 
 export default function SingleGuideView(props) {
   <ViewContainer>
@@ -34,11 +34,11 @@ export default function SingleGuideView(props) {
       </Segment>
       <Header as='h4'>Steps</Header>
       <Segment raised>
-        <div>
+        <StepSection>
           <Icon as='button' name='chevron circle left' />
           <Container>{'Step 1'}</Container>
           <Icon as='button' name='chevron circle right' />
-        </div>
+        </StepSection>
       </Segment>
     </Segment>
   </ViewContainer>
