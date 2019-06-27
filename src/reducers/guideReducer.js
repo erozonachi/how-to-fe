@@ -14,6 +14,7 @@ const initialState = {
   guideFormOpen: false,
   confirmOpen: false,
   guide: null,
+  singleRead: null,
   deleteID: null,
   filteredGuides: null,
 };
@@ -29,6 +30,7 @@ export function guideReducer(state = initialState, action) {
         confirmOpen: state.confirmOpen,
         deleteID: state.deleteID,
         message: action.message || null,
+        singleRead: state.singleRead,
       };
     case types.FAILURE:
       return {
@@ -39,6 +41,7 @@ export function guideReducer(state = initialState, action) {
         confirmOpen: state.confirmOpen,
         deleteID: state.deleteID,
         error: action.payload.error,
+        singleRead: state.singleRead,
       };
     case types.FETCHING_GUIDES:
       return {
@@ -59,6 +62,7 @@ export function guideReducer(state = initialState, action) {
         guide: state.guide,
         message: state.message,
         creatingGuide: true,
+        singleRead: state.singleRead,
       };
     case types.UPDATING_GUIDE:
       return {
@@ -88,6 +92,7 @@ export function guideReducer(state = initialState, action) {
         guide: state.guide,
         message: state.message,
         readingGuide: true,
+        singleRead: action.payload,
       };
     case types.LIKING_GUIDE:
       return {
@@ -113,12 +118,14 @@ export function guideReducer(state = initialState, action) {
         guides: [...state.guides],
         guide: action.payload,
         guideFormOpen: true,
+        singleRead: state.singleRead,
       };
     case types.CLOSE_GUIDE_FORM:
       return {
         ...initialState,
         guides: [...state.guides],
         guideFormOpen: false,
+        singleRead: state.singleRead,
       };
     case types.OPEN_CONFIRM:
       return {
@@ -138,6 +145,7 @@ export function guideReducer(state = initialState, action) {
         ...initialState,
         guides: [...state.guides],
         filteredGuides: action.payload,
+        singleRead: state.singleRead,
       };
     default:
       return state;
