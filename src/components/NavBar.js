@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Menu, Input, Icon, Responsive } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { openGuideForm } from '../actions';
+import { openGuideForm, searchGuide, } from '../actions';
 import GuideForm from './guides/GuideForm';
 import Fuse from 'fuse.js';
 import { mapStateToProps } from './mapState';
@@ -96,4 +96,4 @@ function NavBar(props) {
  );
 }
 
-export default connect(mapStateToProps, { openGuideForm })(NavBar);
+export default connect(mapStateToProps, { openGuideForm, searchGuide, })(NavBar);
