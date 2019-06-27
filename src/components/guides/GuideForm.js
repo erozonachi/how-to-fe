@@ -31,7 +31,7 @@ class GuideForm extends Component {
       if(this.state.guide.title !== this.props.guidesData.guide.title) {
         let list = []
         for (let key in this.props.guidesData.guide) {
-          if(key.toString().includes('step')) {
+          if(key.toString().includes('step') && this.props.guidesData.guide[key]) {
             list.push(this.props.guidesData.guide[key])
           }
         }
