@@ -35,3 +35,25 @@ export const ViewContainer = styled.div`
   width: 100%;
   margin: .5em auto;
 `;
+
+export const StepSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  height: 100px;
+  > button {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    top: 25px;
+    &:first-of-type {
+      left: 0;
+    }
+    &:last-of-type {
+      right: 0;
+    }
+  }
+`;
