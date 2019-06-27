@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, Input, Icon, Responsive } from 'semantic-ui-react';
+import { Link, } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { openGuideForm, searchGuide, } from '../actions';
 import GuideForm from './guides/GuideForm';
@@ -54,7 +55,9 @@ function NavBar(props) {
         active={activeItem === 'Home'}
         onClick={handleItemClick}
       >
+        <Link to='/'>
           <Icon name='home' />
+        </Link>
       </Responsive>
       <Menu.Item>
         <Input onChange={fuzzySearch} name='search' icon='search' placeholder='Search...' />
