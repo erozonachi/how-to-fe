@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { mapStateToProps } from '../mapState';
 import { fetchGuides } from '../../actions';
 import { isArray } from 'util';
+import { Loader, } from 'semantic-ui-react';
 
 function CardGroup(props) {
   const { fetchGuides } = props;
@@ -16,6 +17,9 @@ function CardGroup(props) {
 
   return(
     <GroupContainer>
+      {props.guidesData.fetchingGuides && 
+          <Loader size='massive' active>Fetching How-to Guides</Loader>
+      }
       {
         renderList.map(guide => <GuideCard key={guide.id} guide={guide} user={props.auth.user.username} />)
       }
