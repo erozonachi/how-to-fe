@@ -6,6 +6,7 @@ import { openGuideForm, searchGuide, } from '../actions';
 import GuideForm from './guides/GuideForm';
 import Fuse from 'fuse.js';
 import { mapStateToProps } from './mapState';
+import logo from './logo.png';
 
 function NavBar(props) {
   const [activeItem, setActiveItem] = useState('Home');
@@ -43,7 +44,7 @@ function NavBar(props) {
       </Menu.Item>
       <Menu.Item
       >
-        <img alt='How-to Logo' src='https://react.semantic-ui.com/logo.png' />
+        <img alt='How-to Logo' src={logo} />
       </Menu.Item>
     </Menu.Menu>
 
