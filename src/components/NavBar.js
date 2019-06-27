@@ -3,6 +3,7 @@ import { Menu, Input, Icon, Responsive } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { openGuideForm } from '../actions';
 import GuideForm from './guides/GuideForm';
+import Fuse from 'fuse.js';
 
 function NavBar(props) {
   const [activeItem, setActiveItem] = useState('Home');
@@ -10,6 +11,24 @@ function NavBar(props) {
   const handleItemClick = (event, { name }) => setActiveItem(name);
   const handleToggle = () => props.handleToggle();
   const openGuideForm = () => props.openGuideForm();
+  const options = {
+    tokenize: true,
+    matchAllTokens: true,
+    threshold: 0.6,
+    location: 0,
+    distance: 100,
+    maxPatternLength: 32,
+    minMatchCharLength: 1,
+    keys: [
+      "title",
+      "type",
+      "username",
+    ]
+  };
+  const fuzzySearch = (event) => {
+    const fuse = new Fuse(props.guidesData.guides, options);
+    props.searchGuide(fuse.search(event.target.value.trim()));
+  }
   
  return(
   <Menu color='blue' inverted attached='top'>
@@ -37,7 +56,7 @@ function NavBar(props) {
           <Icon name='home' />
       </Responsive>
       <Menu.Item>
-        <Input icon='search' placeholder='Search...' />
+        <Input onChange={fuzzySearch} name='search' icon='search' placeholder='Search...' />
       </Menu.Item>
 
       <Responsive 
