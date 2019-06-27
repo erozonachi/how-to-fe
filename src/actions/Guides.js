@@ -11,6 +11,10 @@ export const openGuideForm = (guide = null) => dispatch => {
   dispatch({type: types.GUIDE_FORM_OPEN, payload: guide});
 }
 
+export const openConfirm = (id) => dispatch => {
+  dispatch({type: types.CLOSE_CONFIRM, payload: id});
+}
+
 export const closeGuideForm = () => dispatch => {
   dispatch({type: types.CLOSE_GUIDE_FORM});
 }
