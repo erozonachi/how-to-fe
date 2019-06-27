@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Icon, Image, Embed, Segment, Header, Divider, Container, Button, } from 'semantic-ui-react';
 import { ViewContainer, StepSection,  } from './StyledComponents';
 import { connect } from 'react-redux';
 import { mapStateToProps } from '../mapState';
 
 function SingleGuideView(props) {
+  const [viewInfo, setViewInfo] = useState({stepCount: 1});
+
   return (
     <ViewContainer>
       <Segment>
@@ -42,7 +44,7 @@ function SingleGuideView(props) {
             <Icon name='chevron left' />
             </Button>
             <Container>
-              <p>Step 1</p>
+              <p>{props.guidesData.singleRead['step_' + viewInfo.stepCount]}</p>
             </Container>
             <Button basic>
             <Icon name='chevron right' />
