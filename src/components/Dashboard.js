@@ -9,6 +9,7 @@ import { mapStateToProps } from './mapState';
 function Dashboard(props) {
   const [ visible, setVisible ] = useState(false);
   const toggleSidebar = () => setVisible( prevState => !prevState);
+  const openGuideForm = () => props.openGuideForm();
 
   return(
     <div>
@@ -36,7 +37,7 @@ function Dashboard(props) {
           </Menu.Item>
           <GuideForm 
             trigger={
-              <Menu.Item as='a'>
+              <Menu.Item as='a' onClick={openGuideForm}>
                 <Icon name='add' />
                 New Guide
               </Menu.Item>
