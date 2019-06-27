@@ -12,7 +12,9 @@ const initialState = {
   likingGuide: false,
   tryingGuide: false,
   guideFormOpen: false,
+  confirmOpen: false,
   guide: null,
+  deleteID: null,
 };
 
 export function guideReducer(state = initialState, action) {
@@ -23,6 +25,8 @@ export function guideReducer(state = initialState, action) {
         guideFormOpen: state.guideFormOpen,
         guides: action.payload || [...state.guides],
         guide: state.guide,
+        confirmOpen: state.confirmOpen,
+        deleteID: state.deleteID,
         message: action.message || null,
       };
     case types.FAILURE:
@@ -31,6 +35,8 @@ export function guideReducer(state = initialState, action) {
         guideFormOpen: state.guideFormOpen,
         guides: [...state.guides],
         guide: state.guide,
+        confirmOpen: state.confirmOpen,
+        deleteID: state.deleteID,
         error: action.payload.error,
       };
     case types.FETCHING_GUIDES:
@@ -39,6 +45,8 @@ export function guideReducer(state = initialState, action) {
         guideFormOpen: state.guideFormOpen,
         guides: [...state.guides],
         guide: state.guide,
+        confirmOpen: state.confirmOpen,
+        deleteID: state.deleteID,
         message: state.message,
         fetchingGuides: true,
       };
@@ -66,6 +74,8 @@ export function guideReducer(state = initialState, action) {
         guideFormOpen: state.guideFormOpen,
         guides: [...state.guides],
         guide: state.guide,
+        confirmOpen: state.confirmOpen,
+        deleteID: state.deleteID,
         message: state.message,
         deletingGuide: true,
       };
@@ -108,6 +118,19 @@ export function guideReducer(state = initialState, action) {
         ...initialState,
         guides: [...state.guides],
         guideFormOpen: false,
+      };
+    case types.OPEN_CONFIRM:
+      return {
+        ...initialState,
+        guides: [...state.guides],
+        deleteID: action.payload,
+        confirmOpen: true,
+      };
+    case types.CLOSE_CONFIRM:
+      return {
+        ...initialState,
+        guides: [...state.guides],
+        confirmOpen: false,
       };
     default:
       return state;
