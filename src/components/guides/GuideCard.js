@@ -3,7 +3,7 @@ import { Card, Button, Icon, Image, Embed, Segment } from 'semantic-ui-react';
 import { Link, } from 'react-router-dom';
 import { CardContainer } from './StyledComponents';
 import GuideForm from './GuideForm';
-import { openGuideForm, openConfirm, } from '../../actions';
+import { openGuideForm, openConfirm, readGuide, } from '../../actions';
 import { connect } from 'react-redux';
 import ConfirmDelete from './ConfirmDelete';
 
@@ -13,6 +13,9 @@ function GuideCard(props) {
   };
   const popUpDelete = () => {
     props.openConfirm(props.guide.id);
+  }
+  const handleRead = () => {
+    props.readGuide(props.guide);
   }
   const [hover, setHover] = useState(false);
   const handleHover = () => {
@@ -45,7 +48,7 @@ function GuideCard(props) {
         </Card.Content>
         <Card.Content extra>
           <div className={props.user === props.guide.username? 'ui four buttons' : 'ui two buttons'}>
-            <Button basic color='teal' as={Link} to={`/guides/${props.guide.id}`}>
+            <Button onClick={handleRead} basic color='teal' as={Link} to={`/guides/${props.guide.id}`}>
               <Icon name='eye' />
             </Button>
             <Button basic color='orange'>
@@ -73,4 +76,4 @@ function GuideCard(props) {
   );
 }
 
-export default connect(() => ({}), { openGuideForm, openConfirm, })(GuideCard);
+export default connect(() => ({}), { openGuideForm, openConfirm, readGuide, })(GuideCard);
