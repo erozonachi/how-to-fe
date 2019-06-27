@@ -7,8 +7,8 @@ const authAxios = axios.create({
   }
 })
 
-export const openGuideForm = () => dispatch => {
-  dispatch({type: types.GUIDE_FORM_OPEN});
+export const openGuideForm = (guide = null) => dispatch => {
+  dispatch({type: types.GUIDE_FORM_OPEN, payload: guide});
 }
 
 export const closeGuideForm = () => dispatch => {

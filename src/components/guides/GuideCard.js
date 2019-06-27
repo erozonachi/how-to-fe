@@ -2,11 +2,14 @@ import React from 'react';
 import { Card, Button, Icon, Image, Embed } from 'semantic-ui-react';
 import { CardContainer } from './StyledComponents';
 import GuideForm from './GuideForm';
-import { openGuideForm } from '../../actions';
+import { openGuideForm, guideToEdit, } from '../../actions';
 import { connect } from 'react-redux';
 
 function GuideCard(props) {
-  const popUpGuideForm = () => props.openGuideForm();
+  const popUpGuideForm = () => {
+    //props.guideToEdit(props.guide);
+    props.openGuideForm(props.guide);
+  };
 
   return(
     <CardContainer>
@@ -58,4 +61,4 @@ function GuideCard(props) {
   );
 }
 
-export default connect(() => ({}), { openGuideForm })(GuideCard);
+export default connect(() => ({}), { openGuideForm, guideToEdit, })(GuideCard);

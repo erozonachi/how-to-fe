@@ -27,23 +27,28 @@ class GuideForm extends Component {
 
   stateUpdate = () => {
     if (this.props.guidesData.guide) {
-      let list = []
-      for (let key in this.props.guidesData.guide) {
-        if(key.toString().includes('step')) {
-          list.push(this.props.guidesData.guide[key])
+      if(this.state.guide.title !== this.props.guidesData.guide.title) {
+        let list = []
+        for (let key in this.props.guidesData.guide) {
+          if(key.toString().includes('step')) {
+            list.push(this.props.guidesData.guide[key])
+          }
         }
+        this.setState({
+          guide: {
+            title: this.props.guidesData.guide.title,
+            type: this.props.guidesData.guide.type,
+            description: this.props.guidesData.guide.description,
+            link: this.props.guidesData.guide.link,
+            step: '',
+            steps: [...list],
+          }
+        });
       }
-      this.setState(prevState => ({
-        ...prevState,
-        guide: {
-          ...prevState.guide,
-          title: this.props.guidesData.guide.title,
-          type: this.props.guidesData.guide.type,
-          description: this.props.guidesData.guide.description,
-          link: this.props.guidesData.guide.link,
-          steps: [...list],
-        }
-      }));
+    } else {
+      if(this.state.guide.title !== this.initialState.guide.title) {
+        this.setState({...this.initialState});
+      }
     }
   }
 
