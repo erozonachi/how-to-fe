@@ -15,6 +15,10 @@ export const openConfirm = (id) => dispatch => {
   dispatch({type: types.OPEN_CONFIRM, payload: id});
 }
 
+export const searchGuide = (filteredList) => dispatch => {
+  dispatch({type: types.SEARCH_GUIDES, payload: filteredList});
+}
+
 export const closeGuideForm = () => dispatch => {
   dispatch({type: types.CLOSE_GUIDE_FORM});
 }
