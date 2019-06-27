@@ -34,6 +34,10 @@ export const ViewContainer = styled.div`
   max-width: 800px;
   width: 100%;
   margin: .5em auto;
+
+  img {
+    max-width: 100%;
+  }
 `;
 
 export const StepSection = styled.div`
