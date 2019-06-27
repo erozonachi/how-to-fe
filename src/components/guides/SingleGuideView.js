@@ -1,19 +1,27 @@
 import React, { useState } from 'react';
-import { Icon, Image, Embed, Segment, Header, Divider, Container, Button, } from 'semantic-ui-react';
+import { Icon, Image, Embed, Segment, Header, Divider, Container, Button, Transition } from 'semantic-ui-react';
 import { ViewContainer, StepSection,  } from './StyledComponents';
 import { connect } from 'react-redux';
 import { mapStateToProps } from '../mapState';
 
 function SingleGuideView(props) {
-  const [viewInfo, setViewInfo] = useState({stepCount: 1});
+  const [viewInfo, setViewInfo] = useState({stepCount: 1, visible: true});
   const handleNext = () => {
     if(props.guidesData.singleRead['step_' + (viewInfo.stepCount + 1)]) {
-      setViewInfo(prevState => ({stepCount: prevState.stepCount + 1}));
+      setViewInfo(prevState => ({...prevState, visible: !prevState.visible}));
+      setViewInfo(prevState => ({...prevState, stepCount: prevState.stepCount + 1}));
+      setTimeout(() => {
+        setViewInfo(prevState => ({...prevState, visible: !prevState.visible}));
+      }, 1000);
     }
   }
   const handlePrevious = () => {
     if(props.guidesData.singleRead['step_' + (viewInfo.stepCount - 1)]) {
-      setViewInfo(prevState => ({stepCount: prevState.stepCount - 1}));
+      setViewInfo(prevState => ({...prevState, visible: !prevState.visible}));
+      setViewInfo(prevState => ({...prevState, stepCount: prevState.stepCount - 1}));
+      setTimeout(() => {
+        setViewInfo(prevState => ({...prevState, visible: !prevState.visible}));
+      }, 1000);
     }
   }
 
@@ -53,9 +61,11 @@ function SingleGuideView(props) {
             <Button onClick={handlePrevious} basic >
             <Icon name='chevron left' />
             </Button>
-            <Container>
-              <p>{props.guidesData.singleRead['step_' + viewInfo.stepCount]}</p>
-            </Container>
+              <Container>
+            <Transition visible={viewInfo.visible} animation='scale' duration={500}>
+                <p>{props.guidesData.singleRead['step_' + viewInfo.stepCount]}</p>
+            </Transition>
+              </Container>
             <Button onClick={handleNext} basic>
             <Icon name='chevron right' />
             </Button>
