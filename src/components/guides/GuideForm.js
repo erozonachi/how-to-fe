@@ -21,6 +21,7 @@ class GuideForm extends Component {
         title: null,
         message: null,
       },
+      editMode: false,
     }
     this.state = {...this.initialState}
   }
@@ -42,7 +43,8 @@ class GuideForm extends Component {
             link: this.props.guidesData.guide.link,
             step: '',
             steps: [...list],
-          }
+          },
+          editMode: true,
         });
       }
     } else {
@@ -163,7 +165,7 @@ class GuideForm extends Component {
         onClose={this.handleClose}
         closeIcon
       >
-        <Header icon='add circle' content='Create How-to Guide' />
+        <Header icon={this.state.editMode? 'edit' : 'add circle'} content={`${this.state.editMode? 'Edit' : 'Create'} How-to Guide`} />
         <Modal.Content>
           <Form onSubmit={this.handleSubmit} error success>
             {this.props.guidesData.message && <Message 
