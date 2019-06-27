@@ -1,8 +1,10 @@
 import React from 'react';
 import { Icon, Image, Embed, Segment, Header, Divider, Container, } from 'semantic-ui-react';
 import { ViewContainer, StepSection,  } from './StyledComponents';
+import { connect } from 'react-redux';
+import { mapStateToProps } from '../mapState';
 
-export default function SingleGuideView(props) {
+function SingleGuideView(props) {
   <ViewContainer>
     <Segment>
       <Header as='h3'>
@@ -43,3 +45,5 @@ export default function SingleGuideView(props) {
     </Segment>
   </ViewContainer>
 }
+
+export default connect(mapStateToProps, {})(SingleGuideView);
