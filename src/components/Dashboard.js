@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Icon, Menu, Segment, Sidebar, } from 'semantic-ui-react';
+import { Link, } from 'react-router-dom';
 import NavBar from './NavBar';
 import GuideForm from './guides/GuideForm';
 import { connect } from 'react-redux';
@@ -31,7 +32,7 @@ function Dashboard(props) {
             <Icon name='user' />
             {'Eneh - Creator'}
           </Menu.Item>
-          <Menu.Item as='a'>
+          <Menu.Item as={Link} to='/'>
             <Icon name='home' />
             Home
           </Menu.Item>
