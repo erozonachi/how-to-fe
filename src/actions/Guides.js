@@ -7,12 +7,28 @@ const authAxios = axios.create({
   }
 })
 
-export const openGuideForm = () => dispatch => {
-  dispatch({type: types.GUIDE_FORM_OPEN});
+export const openGuideForm = (guide = null) => dispatch => {
+  dispatch({type: types.GUIDE_FORM_OPEN, payload: guide});
+}
+
+export const openConfirm = (id) => dispatch => {
+  dispatch({type: types.OPEN_CONFIRM, payload: id});
+}
+
+export const searchGuide = (filteredList) => dispatch => {
+  dispatch({type: types.SEARCH_GUIDES, payload: filteredList});
 }
 
 export const closeGuideForm = () => dispatch => {
   dispatch({type: types.CLOSE_GUIDE_FORM});
+}
+
+export const closeConfrim = () => dispatch => {
+  dispatch({type: types.CLOSE_CONFIRM});
+}
+
+export const readGuide = (guide) => dispatch => {
+  dispatch({type: types.READING_GUIDE, payload: guide});
 }
 
 export const fetchGuides = () => (dispatch) => {
@@ -41,7 +57,8 @@ export const createGuide = (guide) => (dispatch) => {
       type: types.SUCCESS,
       message: 'New guide created',
     });
-    fetchGuides();
+    dispatch(fetchGuides());
+    dispatch({type: types.CLOSE_GUIDE_FORM});
   })
   .catch(err => {
     dispatch({
@@ -60,6 +77,7 @@ export const updateGuide = (guide, id) => (dispatch) => {
       message: 'Guide update successful',
     });
     dispatch(fetchGuides());
+    dispatch({type: types.CLOSE_GUIDE_FORM});
   })
   .catch(err => {
     dispatch({
@@ -78,6 +96,7 @@ export const deleteGuide = (id) => (dispatch) => {
       message: 'Guide delete successful',
     });
     dispatch(fetchGuides());
+    dispatch({type: types.CLOSE_CONFIRM});
   })
   .catch(err => {
     dispatch({

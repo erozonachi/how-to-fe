@@ -25,3 +25,43 @@ export const GroupContainer = styled.div`
   width: 100%;
   margin: 0 auto;
 `;
+
+export const ViewContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 800px;
+  width: 100%;
+  margin: .5em auto;
+
+  img {
+    max-width: 100%;
+  }
+`;
+
+export const StepSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 250px;
+  position: relative;
+  > button {
+    position: absolute;
+    height: 50px;
+    top: 100px;
+    &:first-of-type {
+      left: 0;
+    }
+    &:last-of-type {
+      right: 0;
+    }
+  }
+  p {
+    padding: 5px 65px;
+    width: 100%;
+    text-align: center;
+  }
+`;

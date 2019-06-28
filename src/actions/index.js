@@ -13,7 +13,10 @@ export const LIKING_GUIDE = 'LIKING_GUIDE';
 export const TRYING_GUIDE = 'TRYING_GUIDE';
 export const GUIDE_FORM_OPEN = 'GUIDE_FORM_OPEN';
 export const CLOSE_GUIDE_FORM = 'CLOSE_GUIDE_FORM';
-export const BASE_URL = `http://localhost:8000/`;
+export const OPEN_CONFIRM = 'OPEN_CONFIRM';
+export const CLOSE_CONFIRM = 'CLOSE_CONFIRM';
+export const SEARCH_GUIDES ='SEARCH_GUIDES';
+export const BASE_URL = `https://bw-how-to.herokuapp.com/`;
 
 export { registerUser, loginUser } from './Auths';
-export { openGuideForm, closeGuideForm, createGuide, fetchGuides, updateGuide, } from './Guides';
+export { openGuideForm, closeGuideForm, createGuide, fetchGuides, updateGuide, openConfirm, closeConfrim, deleteGuide, searchGuide, readGuide, } from './Guides';

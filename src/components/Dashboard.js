@@ -1,11 +1,16 @@
 import React, { useState } from 'react'
-import { Header, Icon, Menu, Segment, Sidebar, Image } from 'semantic-ui-react';
+import { Icon, Menu, Segment, Sidebar, } from 'semantic-ui-react';
+import { Link, } from 'react-router-dom';
 import NavBar from './NavBar';
-import CardGroup from './guides/CardGroup';
+import GuideForm from './guides/GuideForm';
+import { connect } from 'react-redux';
+import { openGuideForm } from '../actions';
+import { mapStateToProps } from './mapState';
 
-export function Dashboard() {
+function Dashboard(props) {
   const [ visible, setVisible ] = useState(false);
   const toggleSidebar = () => setVisible( prevState => !prevState);
+  const openGuideForm = () => props.openGuideForm();
 
   return(
     <div>
@@ -25,16 +30,20 @@ export function Dashboard() {
         >
           <Menu.Item as='a'>
             <Icon name='user' />
-            {'Eneh - Creator'}
+            {`${props.auth.user.username + ' - ' + props.auth.user.type}`}
           </Menu.Item>
-          <Menu.Item as='a'>
+          <Menu.Item as={Link} to='/'>
             <Icon name='home' />
             Home
           </Menu.Item>
-          <Menu.Item as='a'>
-            <Icon name='add' />
-            New Guide
-          </Menu.Item>
+          <GuideForm 
+            trigger={
+              <Menu.Item as='a' onClick={openGuideForm}>
+                <Icon name='add' />
+                New Guide
+              </Menu.Item>
+            }
+          />
           <Menu.Item as='a'>
             <Icon name='edit' />
             Your Guides
@@ -63,10 +72,12 @@ export function Dashboard() {
 
         <Sidebar.Pusher>
           <Segment basic>
-            <CardGroup />
+            {props.children}
           </Segment>
         </Sidebar.Pusher>
       </Sidebar.Pushable>
     </div>
   );
 }
+
+export default connect(mapStateToProps, { openGuideForm })(Dashboard);

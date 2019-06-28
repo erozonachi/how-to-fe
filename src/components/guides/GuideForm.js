@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { Button, Header, Icon, Modal, Form, Divider, Transition, List, Message, } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { mapStateToProps } from '../mapState';
-import { closeGuideForm, createGuide, } from '../../actions';
+import { closeGuideForm, createGuide, updateGuide, } from '../../actions';
 import axios from 'axios';
 
 class GuideForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.initialState = {
       guide: {
         title: '',
         type: '',
@@ -21,28 +21,42 @@ class GuideForm extends Component {
         title: null,
         message: null,
       },
+      editMode: false,
+    }
+    this.state = {...this.initialState}
+  }
+
+  stateUpdate = () => {
+    if (this.props.guidesData.guide) {
+      if(this.state.guide.title !== this.props.guidesData.guide.title) {
+        let list = []
+        for (let key in this.props.guidesData.guide) {
+          if(key.toString().includes('step') && this.props.guidesData.guide[key]) {
+            list.push(this.props.guidesData.guide[key])
+          }
+        }
+        this.setState({
+          guide: {
+            title: this.props.guidesData.guide.title,
+            type: this.props.guidesData.guide.type,
+            description: this.props.guidesData.guide.description,
+            link: this.props.guidesData.guide.link,
+            step: '',
+            steps: [...list],
+          },
+          editMode: true,
+        });
+      }
     }
   }
 
   componentDidMount() {
-    if (this.props.guide) {
-      let list = []
-      for (let key in this.props.guide) {
-        if(key.toString().includes('step')) {
-          list.push(this.props.guide[key])
-        }
-      }
-      this.setState(prevState => ({
-        ...prevState,
-        guide: {
-          ...prevState.guide,
-          title: this.props.guide.title,
-          type: this.props.guide.type,
-          description: this.props.guide.description,
-          link: this.props.guide.link,
-          steps: [...list],
-        }
-      }));
+    this.stateUpdate();
+  }
+
+  componentDidUpdate(prevProps) {
+    if(!prevProps.guidesData.guide || (this.props.guidesData.guide && prevProps.guidesData.guide.title !== this.props.guidesData.guide.title)) {
+      this.stateUpdate();
     }
   }
 
@@ -102,7 +116,7 @@ class GuideForm extends Component {
             .then(response => {
               this.setState(prevState => ({guide:{...prevState.guide, link: response.data.secure_url}}));
               payload['link'] = this.state.guide.link;
-              this.props.createGuide(payload);
+              this.state.editMode? this.props.updateGuide(payload, this.props.guidesData.guide.id) : this.props.createGuide(payload);
             })
             .catch(error => {
               this.setState({
@@ -115,7 +129,7 @@ class GuideForm extends Component {
             return;
           }
         }
-        this.props.createGuide(payload);
+        this.state.editMode? this.props.updateGuide(payload, this.props.guidesData.guide.id) : this.props.createGuide(payload);
     } else {
       this.setState({
         formError: {
@@ -129,7 +143,7 @@ class GuideForm extends Component {
   handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    this.setState(prevState => ({guide:{...prevState.guide, [name]: value}}));
+    this.setState({guide: {...this.state.guide, [name]: value}});
   };
   handleAddClick = () => {
     if(this.state.guide.step.trim() !== '' && this.state.guide.steps.length < 5) {
@@ -139,7 +153,10 @@ class GuideForm extends Component {
   handleRemoveClick = (index) => {
     this.setState(prevState => ({guide:{...prevState.guide, steps: prevState.guide.steps.filter((item, pos) => pos !== index)}}));
   }
-  handleClose = () => this.props.closeGuideForm();
+  handleClose = () => {
+    this.props.closeGuideForm();
+    this.setState({...this.initialState});
+  }
 
   render() {
     return(
@@ -149,7 +166,7 @@ class GuideForm extends Component {
         onClose={this.handleClose}
         closeIcon
       >
-        <Header icon='add circle' content='Create How-to Guide' />
+        <Header icon={this.state.editMode? 'edit' : 'add circle'} content={`${this.state.editMode? 'Edit' : 'Create'} How-to Guide`} />
         <Modal.Content>
           <Form onSubmit={this.handleSubmit} error success>
             {this.props.guidesData.message && <Message 
@@ -212,4 +229,4 @@ class GuideForm extends Component {
 
 }
 
-export default connect(mapStateToProps, { closeGuideForm, createGuide, })(GuideForm);
+export default connect(mapStateToProps, { closeGuideForm, createGuide, updateGuide, })(GuideForm);

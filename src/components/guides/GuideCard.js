@@ -1,16 +1,31 @@
-import React from 'react';
-import { Card, Button, Icon, Image, Embed } from 'semantic-ui-react';
+import React, { useState, } from 'react';
+import { Card, Button, Icon, Image, Embed, Segment } from 'semantic-ui-react';
+import { Link, } from 'react-router-dom';
 import { CardContainer } from './StyledComponents';
 import GuideForm from './GuideForm';
-import { openGuideForm } from '../../actions';
+import { openGuideForm, openConfirm, readGuide, } from '../../actions';
 import { connect } from 'react-redux';
+import ConfirmDelete from './ConfirmDelete';
+import propTypes from 'prop-types';
 
 function GuideCard(props) {
-  const popUpGuideForm = () => props.openGuideForm();
+  const popUpGuideForm = () => {
+    props.openGuideForm(props.guide);
+  };
+  const popUpDelete = () => {
+    props.openConfirm(props.guide.id);
+  }
+  const handleRead = () => {
+    props.readGuide(props.guide);
+  }
+  const [hover, setHover] = useState(false);
+  const handleHover = () => {
+    setHover(!hover);
+  }
 
   return(
-    <CardContainer>
-      <Card>
+    <CardContainer onMouseEnter={handleHover} onMouseLeave={handleHover}>
+      <Card as={Segment} raised={hover}>
       {(props.guide.link.toLowerCase().match(/\.jpg$/) ||
           props.guide.link.toLowerCase().match(/\.jpeg$/) ||  
           props.guide.link.toLowerCase().match(/\.png$/))?
@@ -34,7 +49,7 @@ function GuideCard(props) {
         </Card.Content>
         <Card.Content extra>
           <div className={props.user === props.guide.username? 'ui four buttons' : 'ui two buttons'}>
-            <Button basic color='teal'>
+            <Button onClick={handleRead} basic color='teal' as={Link} to={`/guides/${props.guide.id}`}>
               <Icon name='eye' />
             </Button>
             <Button basic color='orange'>
@@ -48,9 +63,13 @@ function GuideCard(props) {
                 </Button>
               }
             />}
-            {(props.user === props.guide.username) && <Button basic color='red'>
-              <Icon name='trash' />
-            </Button>}
+            {(props.user === props.guide.username) && <ConfirmDelete
+              trigger={
+                <Button basic color='red' onClick={popUpDelete}>
+                  <Icon name='trash' />
+                </Button>
+              }
+            />}
           </div>
         </Card.Content>
       </Card>
@@ -58,4 +77,8 @@ function GuideCard(props) {
   );
 }
 
-export default connect(() => ({}), { openGuideForm })(GuideCard);
+GuideCard.propTypes = {
+  guide: propTypes.object.isRequired
+}
+
+export default connect(() => ({}), { openGuideForm, openConfirm, readGuide, })(GuideCard);

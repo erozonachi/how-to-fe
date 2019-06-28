@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { Menu, Input, Icon, Responsive } from 'semantic-ui-react';
+import { NavLink, } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { openGuideForm } from '../actions';
+import { openGuideForm, searchGuide, } from '../actions';
 import GuideForm from './guides/GuideForm';
+import Fuse from 'fuse.js';
+import { mapStateToProps } from './mapState';
+import logo from './logo.png';
 
 function NavBar(props) {
   const [activeItem, setActiveItem] = useState('Home');
@@ -10,6 +14,24 @@ function NavBar(props) {
   const handleItemClick = (event, { name }) => setActiveItem(name);
   const handleToggle = () => props.handleToggle();
   const openGuideForm = () => props.openGuideForm();
+  const options = {
+    tokenize: true,
+    matchAllTokens: true,
+    threshold: 0.6,
+    location: 0,
+    distance: 100,
+    maxPatternLength: 32,
+    minMatchCharLength: 1,
+    keys: [
+      "title",
+      "type",
+      "username",
+    ]
+  };
+  const fuzzySearch = (event) => {
+    const fuse = new Fuse(props.guidesData.guides, options);
+    props.searchGuide(fuse.search(event.target.value.trim()));
+  }
   
  return(
   <Menu color='blue' inverted attached='top'>
@@ -20,10 +42,12 @@ function NavBar(props) {
       >
         <Icon name='bars' />
       </Menu.Item>
-      <Menu.Item
-      >
-        <img alt='How-to Logo' src='https://react.semantic-ui.com/logo.png' />
-      </Menu.Item>
+      <Responsive 
+          as={Menu.Item} 
+          minWidth={Responsive.onlyTablet.minWidth}
+        >
+          <img alt='How-to Logo' src={logo} />
+        </Responsive>
     </Menu.Menu>
 
     <Menu.Menu position='right'>
@@ -34,10 +58,12 @@ function NavBar(props) {
         active={activeItem === 'Home'}
         onClick={handleItemClick}
       >
+        <NavLink to='/'>
           <Icon name='home' />
+        </NavLink>
       </Responsive>
       <Menu.Item>
-        <Input icon='search' placeholder='Search...' />
+        <Input onChange={fuzzySearch} name='search' icon='search' placeholder='Search...' />
       </Menu.Item>
 
       <Responsive 
@@ -76,4 +102,4 @@ function NavBar(props) {
  );
 }
 
-export default connect(() => ({}), { openGuideForm })(NavBar);
+export default connect(mapStateToProps, { openGuideForm, searchGuide, })(NavBar);
