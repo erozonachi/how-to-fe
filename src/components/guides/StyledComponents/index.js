@@ -46,11 +46,12 @@ export const StepSection = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  height: 250px;
   position: relative;
   > button {
     position: absolute;
     height: 50px;
-    top: 25px;
+    top: 100px;
     &:first-of-type {
       left: 0;
     }
