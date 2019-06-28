@@ -17,7 +17,7 @@ function CardGroup(props) {
 
   return(
     <GroupContainer>
-      {this.props.guidesData.error && <Message
+      {props.guidesData.error && <Message
         error
         header='Guide Error'
         content={this.props.guidesData.error}
