@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { mapStateToProps } from '../mapState';
 import { fetchGuides } from '../../actions';
 import { isArray } from 'util';
-import { Loader, } from 'semantic-ui-react';
+import { Loader, Message } from 'semantic-ui-react';
 
 function CardGroup(props) {
   const { fetchGuides } = props;
@@ -17,6 +17,11 @@ function CardGroup(props) {
 
   return(
     <GroupContainer>
+      {this.props.guidesData.error && <Message
+        error
+        header='Guide Error'
+        content={this.props.guidesData.error}
+      />}
       {props.guidesData.fetchingGuides && 
           <Loader size='massive' active>Fetching How-to Guides</Loader>
       }
